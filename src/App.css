@@ -1,0 +1,44 @@
+:root {
+  --nav-height: 50px;
+}
+
+.App {
+  padding: 10px;
+  display: grid;
+  grid-template-areas:
+    "nav nav nav nav"
+    "trackers trackers trackers alerts"
+    "notes notes notes notes";
+  grid-template-rows: var(--nav-height) 200px 200px;
+  grid-gap: 1vw;
+}
+
+.Menu {
+  background-color: #00ff00;
+
+  display: none;
+}
+
+.Nav {
+  background-color: #0000ff;
+
+  grid-area: nav;
+}
+
+.Trackers {
+  background-color: #ffff00;
+
+  grid-area: trackers;
+}
+
+.Alerts {
+  background-color: #ff0000;
+
+  grid-area: alerts;
+}
+
+.Notes {
+  background-color: #00ffff;
+
+  grid-area: notes;
+}
