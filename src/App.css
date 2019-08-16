@@ -1,5 +1,9 @@
 :root {
-  --nav-height: 50px;
+  --nav-height: auto;
+}
+
+a {
+  text-decoration: none;
 }
 
 .App {
@@ -20,9 +24,34 @@
 }
 
 .Nav {
-  background-color: #0000ff;
-
+  background-color: #333;
   grid-area: nav;
+  display: flex;
+  color: #fff;
+}
+
+.nav-item {
+  height: 50px;
+  display: grid;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav-link {
+  padding: 0 10px;
+  color: #fff;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  background-color: #333;
+}
+
+.dropdown-item {
+  padding: 2px;
 }
 
 .Trackers {
