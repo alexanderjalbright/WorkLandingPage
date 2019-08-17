@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class Nav extends Component {
   onMouseEnter(e) {
-    e.currentTarget.lastChild.style.display = "block";
+    e.currentTarget.lastChild.style.display = "flex";
   }
   onMouseLeave(e) {
     e.currentTarget.lastChild.style.display = "none";
@@ -17,46 +17,46 @@ export default class Nav extends Component {
     };
     return (
       <div className="Nav">
-        {links.map(link => {
-          const { target, rel } = isFile(link.file);
-          return link.dropdown === undefined ? (
-            <div className="nav-item" key={link.path}>
+        {links !== undefined &&
+          links.map(link => {
+            const { target, rel } = isFile(link.file);
+            return link.dropdown === undefined ? (
               <a
-                className="nav-link"
+                key={link.name}
+                className="nav-item nav-link"
                 href={link.path}
                 target={target}
                 rel={rel}
               >
                 {link.name}
               </a>
-            </div>
-          ) : (
-            <div
-              className="dropdown-cover"
-              onMouseEnter={e => this.onMouseEnter(e)}
-              onMouseLeave={e => this.onMouseLeave(e)}
-            >
-              <div className="nav-item nav-link">{link.name}</div>
-              <div className="dropdown">
-                {link.dropdown.map(dLink => {
-                  const { target, rel } = isFile(dLink.file);
-                  return (
-                    <div className="dropdown-item" key={dLink.path}>
+            ) : (
+              <div
+                key={link.name}
+                className="dropdown-cover"
+                onMouseEnter={e => this.onMouseEnter(e)}
+                onMouseLeave={e => this.onMouseLeave(e)}
+              >
+                <div className="nav-item nav-link">{link.name} ▼</div>
+                <div className="dropdown">
+                  {link.dropdown.map(dLink => {
+                    const { target, rel } = isFile(dLink.file);
+                    return (
                       <a
-                        className="nav-link"
+                        key={dLink.name}
+                        className="dropdown-item nav-link"
                         href={dLink.path}
                         target={target}
                         rel={rel}
                       >
                         {dLink.name}
                       </a>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     );
   }

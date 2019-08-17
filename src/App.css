@@ -1,5 +1,16 @@
 :root {
-  --nav-height: auto;
+  --nav-height: 60px;
+  --nav-link-color: #fff;
+  --nav-background-color: #333;
+  --nav-hover-color: #00bbff;
+
+  --card-height: 200px;
+}
+
+html {
+  box-sizing: border-box;
+  line-height: 1.6em;
+  font-family: "Ubuntu", sans-serif;
 }
 
 a {
@@ -13,7 +24,7 @@ a {
     "nav nav nav nav"
     "trackers trackers trackers alerts"
     "notes notes notes notes";
-  grid-template-rows: var(--nav-height) 200px 200px;
+  grid-template-rows: var(--nav-height) repeat(2, var(--card-height));
   grid-gap: 1vw;
 }
 
@@ -24,34 +35,41 @@ a {
 }
 
 .Nav {
-  background-color: #333;
+  background-color: var(--nav-background-color);
   grid-area: nav;
   display: flex;
-  color: #fff;
+  color: var(--nav-link-color);
+  height: var(--nav-height);
 }
 
 .nav-item {
-  height: 50px;
+  height: 100%;
   display: grid;
   text-align: center;
   align-items: center;
   cursor: pointer;
+  padding: 0 10px;
 }
 
 .nav-link {
-  padding: 0 10px;
-  color: #fff;
+  color: var(--nav-link-color);
+}
+
+.nav-link:hover {
+  color: var(--nav-background-color);
+  background-color: var(--nav-hover-color);
 }
 
 .dropdown {
   display: none;
+  flex-direction: column;
   position: absolute;
-  z-index: 2;
+  z-index: 10;
   background-color: #333;
 }
 
 .dropdown-item {
-  padding: 2px;
+  padding: 3px 10px;
 }
 
 .Trackers {
