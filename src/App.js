@@ -7,36 +7,20 @@ import Alerts from "./Components/Alerts";
 import Trackers from "./Components/Trackers";
 import Notes from "./Components/Notes";
 
+import { LoadLinks } from "./Functions/Load.js";
+
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      links: [
-        {
-          name: "Search",
-          path: "https://google.com"
-        },
-        {
-          name: "Social",
-          dropdown: [
-            {
-              name: "Github",
-              path: "https://github.com/alexanderjalbright"
-            },
-            {
-              name: "LinkedIn",
-              path: "https://www.linkedin.com/in/alexanderjalbright/"
-            },
-            {
-              name: "Portfolio",
-              path: "https://alexalbright.dev"
-            }
-          ]
-        }
-      ]
+      links: []
     };
   }
-
+  componentDidMount() {
+    this.setState({
+      links: LoadLinks()
+    });
+  }
   render() {
     return (
       <div className="App">
