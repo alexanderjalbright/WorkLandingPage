@@ -13,9 +13,15 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      links: []
+      links: [],
+      isMenuOpen: false
     };
   }
+
+  toggleMenu = () => {
+    this.setState({ isMenuOpen: !this.state.isMenuOpen });
+  };
+
   componentDidMount() {
     this.setState({
       links: LoadLinks()
@@ -24,11 +30,13 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <Nav links={this.state.links} />
-        <Menu />
-        <Alerts />
-        <Trackers />
-        <Notes />
+        {this.state.isMenuOpen && <Menu />}
+        <div className="main">
+          <Nav links={this.state.links} toggleMenu={this.toggleMenu} />
+          <Alerts />
+          <Trackers />
+          <Notes />
+        </div>
       </div>
     );
   }

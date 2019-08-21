@@ -18,6 +18,11 @@ a {
 }
 
 .App {
+  display: flex;
+}
+
+.main {
+  flex-grow: 1;
   padding: 10px;
   display: grid;
   grid-template-areas:
@@ -30,8 +35,12 @@ a {
 
 .Menu {
   background-color: #00ff00;
+  height: 100vh;
+}
 
-  display: none;
+.menu-btn {
+  background-color: #00000000;
+  border: none;
 }
 
 .Nav {
