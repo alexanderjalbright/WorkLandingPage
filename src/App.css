@@ -2,15 +2,23 @@
   --nav-height: 60px;
   --nav-link-color: #fff;
   --nav-background-color: #333;
-  --nav-hover-color: #00bbff;
+  --nav-hover-color: #006b92;
 
   --card-height: 200px;
+
+  --color-accent: #006b92;
+  --color-notes: rgb(65, 100, 0);
+  --color-menu: #3e0070;
+  /* --color-tracker: #af6504; */
+  --color-tracker: #006b92;
+  --color-alerts: #aa0000;
 }
 
 html {
   box-sizing: border-box;
   line-height: 1.6em;
   font-family: "Ubuntu", sans-serif;
+  background-color: #222;
 }
 
 a {
@@ -34,7 +42,7 @@ a {
 }
 
 .Menu {
-  background-color: #00ff00;
+  background-color: var(--color-menu);
   height: 100vh;
 }
 
@@ -65,7 +73,7 @@ a {
 }
 
 .nav-link:hover {
-  color: var(--nav-background-color);
+  /* color: var(--nav-background-color); */
   background-color: var(--nav-hover-color);
 }
 
@@ -75,6 +83,7 @@ a {
   position: absolute;
   z-index: 10;
   background-color: #333;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 1);
 }
 
 .dropdown-item {
@@ -82,19 +91,19 @@ a {
 }
 
 .Trackers {
-  background-color: #ffff00;
+  background-color: var(--color-tracker);
 
   grid-area: trackers;
 }
 
 .Alerts {
-  background-color: #ff0000;
+  background-color: var(--color-alerts);
 
   grid-area: alerts;
 }
 
 .Notes {
-  background-color: #00ffff;
+  background-color: var(--color-notes);
 
   grid-area: notes;
 }

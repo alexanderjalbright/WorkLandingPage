@@ -38,20 +38,22 @@ export function Dropdown(link) {
     >
       <div className="nav-item nav-link">{link.name} ▼</div>
       <div className="dropdown">
-        {link.dropdown.map(dLink => {
-          const { target, rel } = targetAndRel(dLink.file);
-          return (
-            <a
-              key={dLink.name}
-              className="dropdown-item nav-link"
-              href={dLink.path}
-              target={target}
-              rel={rel}
-            >
-              {dLink.name}
-            </a>
-          );
-        })}
+        {link.dropdown
+          .sort((a, b) => a.name > b.name)
+          .map(dLink => {
+            const { target, rel } = targetAndRel(dLink.file);
+            return (
+              <a
+                key={dLink.name}
+                className="dropdown-item nav-link"
+                href={dLink.path}
+                target={target}
+                rel={rel}
+              >
+                {dLink.name}
+              </a>
+            );
+          })}
       </div>
     </div>
   );

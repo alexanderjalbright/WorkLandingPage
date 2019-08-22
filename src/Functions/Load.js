@@ -11,6 +11,15 @@ export function LoadLinks() {
         path: "https://google.com"
       },
       {
+        name: "Music",
+        path: "https://open.spotify.com"
+      },
+      {
+        name: "Weather",
+        path:
+          "https://www.accuweather.com/en/us/macedonia/44056/minute-weather-forecast/339996"
+      },
+      {
         name: "Social",
         dropdown: [
           {
@@ -26,10 +35,39 @@ export function LoadLinks() {
             path: "https://alexalbright.dev"
           }
         ]
+      },
+      {
+        name: "Class",
+        dropdown: [
+          {
+            name: "Noba | Psych",
+            path: "https://flashline.kent.edu"
+          },
+          {
+            name: "Blackboard",
+            path: "https://learn.kent.edu/webapps/login/"
+          },
+          {
+            name: "Email",
+            path: "https://email.kent.edu"
+          },
+          {
+            name: "Flashline",
+            path: "https://www.linkedin.com/in/alexanderjalbright/"
+          }
+        ]
+      },
+      {
+        name: "Work",
+        dropdown: [
+          {
+            name: "Ultipro",
+            path: "https://ew34.ultipro.com/login.aspx"
+          }
+        ]
       }
     ];
     localStorage.setItem("links", JSON.stringify(links));
   }
-  links.sort((a, b) => a.name > b.name);
   return links;
 }
