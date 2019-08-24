@@ -18,6 +18,12 @@ export default class App extends Component {
     };
   }
 
+  deleteLink = index => {
+    const modLinks = [...this.state.links];
+    modLinks.splice(index, 1);
+    this.setState({ links: modLinks });
+  };
+
   toggleMenu = () => {
     this.setState({ isMenuOpen: !this.state.isMenuOpen });
   };
@@ -30,7 +36,9 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.isMenuOpen && <Menu />}
+        {this.state.isMenuOpen && (
+          <Menu links={this.state.links} deleteLink={this.deleteLink} />
+        )}
         <div className="main">
           <Nav links={this.state.links} toggleMenu={this.toggleMenu} />
           <Alerts />

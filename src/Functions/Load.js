@@ -41,7 +41,7 @@ export function LoadLinks() {
         dropdown: [
           {
             name: "Noba | Psych",
-            path: "https://flashline.kent.edu"
+            path: "https://nobaproject.com/textbooks/julie-evey-new-textbook"
           },
           {
             name: "Blackboard",
@@ -53,7 +53,7 @@ export function LoadLinks() {
           },
           {
             name: "Flashline",
-            path: "https://www.linkedin.com/in/alexanderjalbright/"
+            path: "https://flashline.kent.edu"
           }
         ]
       },
