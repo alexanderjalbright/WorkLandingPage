@@ -18,9 +18,12 @@ export default class App extends Component {
     };
   }
 
-  deleteLink = index => {
+  deleteLink = (index, dIndex) => {
+    console.log(dIndex);
     const modLinks = [...this.state.links];
-    modLinks.splice(index, 1);
+    dIndex === undefined
+      ? modLinks.splice(index, 1)
+      : modLinks[index].dropdown.splice(dIndex, 1);
     this.setState({ links: modLinks });
   };
 
