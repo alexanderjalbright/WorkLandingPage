@@ -13,16 +13,14 @@ export default class Nav extends Component {
           Menu
         </button>
         {links !== undefined &&
-          links
-            .sort((a, b) => a.name > b.name)
-            .map(link => {
-              //return link.dropdown !== undefined ? Dropdown(link) : Link(link);
-              return link.dropdown !== undefined ? (
-                <Dropdown link={link} />
-              ) : (
-                <Link link={link} classname="nav-item" />
-              );
-            })}
+          links.map(link => {
+            //return link.dropdown !== undefined ? Dropdown(link) : Link(link);
+            return link.dropdown !== undefined ? (
+              <Dropdown link={link} />
+            ) : (
+              <Link link={link} classname="nav-item" />
+            );
+          })}
       </div>
     );
   }

@@ -19,11 +19,27 @@ export default class App extends Component {
   }
 
   deleteLink = (index, dIndex) => {
-    console.log(dIndex);
     const modLinks = [...this.state.links];
     dIndex === undefined
       ? modLinks.splice(index, 1)
       : modLinks[index].dropdown.splice(dIndex, 1);
+    this.setState({ links: modLinks });
+  };
+
+  editLink = (index, dIndex, newName) => {
+    const modLinks = [...this.state.links];
+    dIndex === undefined
+      ? (modLinks[index].name = newName)
+      : (modLinks[index].dropdown[dIndex].name = newName);
+    this.setState({ links: modLinks });
+  };
+
+  toggleEditable = (index, dIndex) => {
+    const modLinks = [...this.state.links];
+    dIndex === undefined
+      ? (modLinks[index].isEditable = !modLinks[index].isEditable)
+      : (modLinks[index].dropdown[dIndex].isEditable = !modLinks[index]
+          .dropdown[dIndex].isEditable);
     this.setState({ links: modLinks });
   };
 
@@ -40,7 +56,12 @@ export default class App extends Component {
     return (
       <div className="App">
         {this.state.isMenuOpen && (
-          <Menu links={this.state.links} deleteLink={this.deleteLink} />
+          <Menu
+            links={this.state.links}
+            deleteLink={this.deleteLink}
+            editLink={this.editLink}
+            toggleEditable={this.toggleEditable}
+          />
         )}
         <div className="main">
           <Nav links={this.state.links} toggleMenu={this.toggleMenu} />

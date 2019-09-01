@@ -69,5 +69,12 @@ export function LoadLinks() {
     ];
     localStorage.setItem("links", JSON.stringify(links));
   }
+  links
+    .sort((a, b) => a.name > b.name)
+    .forEach(link => {
+      link.dropdown === undefined ||
+        link.dropdown.sort((a, b) => a.name > b.name);
+      link.isEditable = false;
+    });
   return links;
 }
