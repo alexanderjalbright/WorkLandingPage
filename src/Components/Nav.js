@@ -20,7 +20,7 @@ export default class Nav extends Component {
               return link.dropdown !== undefined ? (
                 <Dropdown link={link} />
               ) : (
-                <Link link={link} />
+                <Link link={link} classname="nav-item" />
               );
             })}
       </div>

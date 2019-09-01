@@ -15,12 +15,12 @@ function targetAndRel(bool) {
 
 export class Link extends Component {
   render() {
-    const { link } = this.props;
+    const { link, classname } = this.props;
     const { target, rel } = targetAndRel(link.file);
     return (
       <a
         key={link.name}
-        className="nav-item nav-link"
+        className={`nav-link ${classname}`}
         href={link.path}
         target={target}
         rel={rel}
@@ -46,18 +46,7 @@ export class Dropdown extends Component {
           {link.dropdown
             .sort((a, b) => a.name > b.name)
             .map(dLink => {
-              const { target, rel } = targetAndRel(dLink.file);
-              return (
-                <a
-                  key={dLink.name}
-                  className="dropdown-item nav-link"
-                  href={dLink.path}
-                  target={target}
-                  rel={rel}
-                >
-                  {dLink.name}
-                </a>
-              );
+              return <Link link={dLink} classname="dropdown-item" />;
             })}
         </div>
       </div>
