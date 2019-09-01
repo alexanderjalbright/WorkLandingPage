@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Dropdown } from "../Functions/NavLinks";
+import { Link, Dropdown } from "./NavLinks.js";
 
 export default class Nav extends Component {
   render() {
@@ -16,7 +16,12 @@ export default class Nav extends Component {
           links
             .sort((a, b) => a.name > b.name)
             .map(link => {
-              return link.dropdown !== undefined ? Dropdown(link) : Link(link);
+              //return link.dropdown !== undefined ? Dropdown(link) : Link(link);
+              return link.dropdown !== undefined ? (
+                <Dropdown link={link} />
+              ) : (
+                <Link link={link} />
+              );
             })}
       </div>
     );
