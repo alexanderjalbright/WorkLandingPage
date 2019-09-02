@@ -7,7 +7,7 @@ import Alerts from "./Components/Alerts";
 import Trackers from "./Components/Trackers";
 import Notes from "./Components/Notes";
 
-import { LoadLinks } from "./Functions/Load.js";
+import { LoadLinks, SaveLinks } from "./Functions/Load.js";
 
 export default class App extends Component {
   constructor() {
@@ -24,6 +24,7 @@ export default class App extends Component {
       ? modLinks.splice(index, 1)
       : modLinks[index].dropdown.splice(dIndex, 1);
     this.setState({ links: modLinks });
+    SaveLinks(modLinks);
   };
 
   editLink = (index, dIndex, newLink) => {
@@ -32,6 +33,7 @@ export default class App extends Component {
       ? (modLinks[index] = newLink)
       : (modLinks[index].dropdown[dIndex] = newLink);
     this.setState({ links: modLinks });
+    SaveLinks(modLinks);
   };
 
   addLink = (newLink, index) => {
@@ -40,6 +42,7 @@ export default class App extends Component {
       ? modLinks.push(newLink)
       : modLinks[index].dropdown.push(newLink);
     this.setState({ links: modLinks });
+    SaveLinks(modLinks);
   };
 
   toggleEditable = (index, dIndex) => {

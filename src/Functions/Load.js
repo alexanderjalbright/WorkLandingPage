@@ -78,3 +78,7 @@ export function LoadLinks() {
     });
   return links;
 }
+
+export function SaveLinks(newLinks) {
+  localStorage.setItem("links", JSON.stringify(newLinks));
+}
