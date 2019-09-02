@@ -9,7 +9,7 @@ export default class Menu extends Component {
         <h1>MENU</h1>
         <ul className="edit-links">
           {links.map((link, index) => (
-            <div>
+            <div key={link.name}>
               <Link
                 link={link}
                 index={index}

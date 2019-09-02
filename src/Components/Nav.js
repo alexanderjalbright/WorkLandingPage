@@ -13,14 +13,13 @@ export default class Nav extends Component {
           Menu
         </button>
         {links !== undefined &&
-          links.map(link => {
-            //return link.dropdown !== undefined ? Dropdown(link) : Link(link);
-            return link.dropdown !== undefined ? (
-              <Dropdown link={link} />
+          links.map(link =>
+            link.dropdown !== undefined ? (
+              <Dropdown key={`nav${link.name}`} link={link} />
             ) : (
-              <Link link={link} classname="nav-item" />
-            );
-          })}
+              <Link key={`nav${link.name}`} link={link} classname="nav-item" />
+            )
+          )}
       </div>
     );
   }

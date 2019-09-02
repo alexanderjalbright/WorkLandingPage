@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 
 export class Link extends Component {
+  constructor(props) {
+    super();
+    this.state = {
+      name: props.link.name
+    };
+  }
   render() {
     const {
       link,
@@ -11,11 +17,11 @@ export class Link extends Component {
       toggleEditable
     } = this.props;
     return (
-      <li key={link.name}>
+      <li key={`menuLink${index}${dIndex}`}>
         {link.isEditable ? (
           <input
-            value={link.name}
-            onChange={e => editLink(index, dIndex, e.target.value)}
+            value={this.state.name}
+            onChange={e => this.setState({ name: e.target.value })}
           />
         ) : (
           <span>{link.name}</span>
@@ -33,7 +39,12 @@ export class Link extends Component {
         </span>
         {link.isEditable && (
           <span>
-            <button className="menu-btn">+</button>
+            <button
+              className="menu-btn"
+              onClick={() => editLink(index, dIndex, this.state.name)}
+            >
+              +
+            </button>
             <button
               className="menu-btn"
               onClick={() => deleteLink(index, dIndex)}
@@ -54,9 +65,9 @@ export class Dropdown extends Component {
       <div>
         <ul>
           {link.dropdown.map((dLink, dIndex) => {
-            console.log(dLink.name);
             return (
               <Link
+                key={`menuDropdown${index}${dIndex}`}
                 link={dLink}
                 index={index}
                 dIndex={dIndex}

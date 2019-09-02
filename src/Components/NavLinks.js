@@ -19,7 +19,7 @@ export class Link extends Component {
     const { target, rel } = targetAndRel(link.file);
     return (
       <a
-        key={link.name}
+        key={`navLink${link.name}`}
         className={`nav-link ${classname}`}
         href={link.path}
         target={target}
@@ -36,7 +36,7 @@ export class Dropdown extends Component {
     const { link } = this.props;
     return (
       <div
-        key={link.name}
+        key={`dropdown${link.name}`}
         className="dropdown-cover"
         onMouseEnter={e => onMouseEnter(e)}
         onMouseLeave={e => onMouseLeave(e)}
@@ -46,7 +46,13 @@ export class Dropdown extends Component {
           {link.dropdown
             .sort((a, b) => a.name > b.name)
             .map(dLink => {
-              return <Link link={dLink} classname="dropdown-item" />;
+              return (
+                <Link
+                  key={`dlink${dLink.name}`}
+                  link={dLink}
+                  classname="dropdown-item"
+                />
+              );
             })}
         </div>
       </div>
