@@ -26,11 +26,19 @@ export default class App extends Component {
     this.setState({ links: modLinks });
   };
 
-  editLink = (index, dIndex, newName) => {
+  editLink = (index, dIndex, newLink) => {
     const modLinks = [...this.state.links];
     dIndex === undefined
-      ? (modLinks[index].name = newName)
-      : (modLinks[index].dropdown[dIndex].name = newName);
+      ? (modLinks[index] = newLink)
+      : (modLinks[index].dropdown[dIndex] = newLink);
+    this.setState({ links: modLinks });
+  };
+
+  addLink = (newLink, index) => {
+    const modLinks = [...this.state.links];
+    index === undefined
+      ? modLinks.push(newLink)
+      : modLinks[index].dropdown.push(newLink);
     this.setState({ links: modLinks });
   };
 
@@ -61,6 +69,7 @@ export default class App extends Component {
             deleteLink={this.deleteLink}
             editLink={this.editLink}
             toggleEditable={this.toggleEditable}
+            addLink={this.addLink}
           />
         )}
         <div className="main">

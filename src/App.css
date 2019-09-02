@@ -44,11 +44,19 @@ a {
 .Menu {
   background-color: var(--color-menu);
   height: 100vh;
+  color: #fff;
 }
 
 .menu-btn {
   background-color: #00000000;
   border: none;
+}
+
+.menu-input {
+  background-color: #240042;
+  color: #fff;
+  border: none;
+  border-bottom: 2px solid #fff;
 }
 
 .Nav {
