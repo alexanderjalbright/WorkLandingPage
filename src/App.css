@@ -48,8 +48,10 @@ a {
 }
 
 .menu-btn {
-  background-color: #00000000;
-  border: none;
+  background-color: #00000022;
+  border: 1px solid #000;
+  width: 27px;
+  height: 20px;
 }
 
 .menu-input {
@@ -59,6 +61,13 @@ a {
   border-bottom: 2px solid #fff;
 }
 
+.add-btn {
+  color: #006b92;
+}
+
+.del-btn {
+  color: #a00;
+}
 .Nav {
   background-color: var(--nav-background-color);
   grid-area: nav;

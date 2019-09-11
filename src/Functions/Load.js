@@ -3,82 +3,37 @@ export function LoadLinks() {
   if (links === null) {
     links = [
       {
-        name: "Todo",
-        path: "https://todo.microsoft.com"
+        name: "StackOverflow",
+        path: "https://stackoverflow.com/questions"
       },
       {
-        name: "Search",
-        path: "https://google.com"
-      },
-      {
-        name: "Music",
-        path: "https://open.spotify.com"
-      },
-      {
-        name: "Weather",
-        path:
-          "https://www.accuweather.com/en/us/macedonia/44056/minute-weather-forecast/339996"
-      },
-      {
-        name: "Social",
+        name: "Documentation",
         dropdown: [
           {
-            name: "Github",
-            path: "https://github.com/alexanderjalbright"
+            name: "MDN",
+            path: "https://developer.mozilla.org/en-US/docs/Learn"
           },
           {
-            name: "LinkedIn",
-            path: "https://www.linkedin.com/in/alexanderjalbright/"
+            name: "MSDN",
+            path: "https://developer.microsoft.com/en-us/"
           },
           {
-            name: "Portfolio",
-            path: "https://alexalbright.dev"
-          }
-        ]
-      },
-      {
-        name: "Class",
-        dropdown: [
-          {
-            name: "Noba | Psych",
-            path: "https://nobaproject.com/textbooks/julie-evey-new-textbook"
+            name: "React.js",
+            path: "https://reactjs.org/docs/getting-started.html"
           },
           {
-            name: "Blackboard",
-            path: "https://learn.kent.edu/webapps/login/"
+            name: "W3Schools",
+            path: "https://www.w3schools.com/"
           },
           {
-            name: "Email",
-            path: "https://email.kent.edu"
-          },
-          {
-            name: "Flashline",
-            path: "https://flashline.kent.edu"
-          }
-        ]
-      },
-      {
-        name: "Work",
-        dropdown: [
-          {
-            name: "Ultipro",
-            path: "https://ew34.ultipro.com/login.aspx"
+            name: "W3Schools",
+            path: "https://www.w3schools.com/"
           }
         ]
       }
     ];
     localStorage.setItem("links", JSON.stringify(links));
   }
-  links
-    .sort((a, b) => a.name > b.name)
-    .forEach(link => {
-      link.dropdown === undefined ||
-        link.dropdown.sort((a, b) => a.name > b.name);
-      link.isEditable = false;
-    });
-  return links;
-}
 
-export function SaveLinks(newLinks) {
-  localStorage.setItem("links", JSON.stringify(newLinks));
+  return links;
 }

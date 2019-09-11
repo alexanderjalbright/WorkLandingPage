@@ -18,13 +18,25 @@ export default class App extends Component {
     };
   }
 
+  saveLinks = newLinks => {
+    newLinks
+      .sort((a, b) => a.name > b.name)
+      .forEach(link => {
+        link.dropdown === undefined ||
+          link.dropdown.sort((a, b) => a.name > b.name);
+        link.isEditable = false;
+      });
+
+    localStorage.setItem("links", JSON.stringify(newLinks));
+    this.setState({ links: newLinks });
+  };
+
   deleteLink = (index, dIndex) => {
     const modLinks = [...this.state.links];
     dIndex === undefined
       ? modLinks.splice(index, 1)
       : modLinks[index].dropdown.splice(dIndex, 1);
-    this.setState({ links: modLinks });
-    SaveLinks(modLinks);
+    this.saveLinks(modLinks);
   };
 
   editLink = (index, dIndex, newLink) => {
@@ -32,8 +44,7 @@ export default class App extends Component {
     dIndex === undefined
       ? (modLinks[index] = newLink)
       : (modLinks[index].dropdown[dIndex] = newLink);
-    this.setState({ links: modLinks });
-    SaveLinks(modLinks);
+    this.saveLinks(modLinks);
   };
 
   addLink = (newLink, index) => {
@@ -41,8 +52,7 @@ export default class App extends Component {
     index === undefined
       ? modLinks.push(newLink)
       : modLinks[index].dropdown.push(newLink);
-    this.setState({ links: modLinks });
-    SaveLinks(modLinks);
+    this.saveLinks(modLinks);
   };
 
   toggleEditable = (index, dIndex) => {

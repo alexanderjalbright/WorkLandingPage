@@ -53,7 +53,7 @@ export class Link extends Component {
         {link.isEditable && (
           <span>
             <button
-              className="menu-btn"
+              className="menu-btn add-btn"
               onClick={() => {
                 const newLink = {
                   name: this.state.name,
@@ -67,7 +67,7 @@ export class Link extends Component {
               +
             </button>
             <button
-              className="menu-btn"
+              className="menu-btn del-btn"
               onClick={() => deleteLink(index, dIndex)}
             >
               &times;
@@ -130,7 +130,7 @@ export class Dropdown extends Component {
             />
 
             <button
-              className="menu-btn"
+              className="menu-btn add-btn"
               onClick={() => {
                 const newLink = {
                   name: this.state.name,
@@ -144,7 +144,7 @@ export class Dropdown extends Component {
               +
             </button>
             <button
-              className="menu-btn"
+              className="menu-btn del-btn"
               onClick={() => this.setState({ name: "", path: "" })}
             >
               &times;

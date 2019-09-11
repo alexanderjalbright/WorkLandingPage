@@ -53,7 +53,7 @@ export default class Menu extends Component {
             />
 
             <button
-              className="menu-btn"
+              className="menu-btn add-btn"
               onClick={() => {
                 const newLink = {
                   name: this.state.name,
@@ -71,7 +71,7 @@ export default class Menu extends Component {
               +
             </button>
             <button
-              className="menu-btn"
+              className="menu-btn del-btn"
               onClick={() => this.setState({ name: "", path: "" })}
             >
               &times;

@@ -43,17 +43,15 @@ export class Dropdown extends Component {
       >
         <div className="nav-item nav-link">{link.name} ▼</div>
         <div className="dropdown">
-          {link.dropdown
-            .sort((a, b) => a.name > b.name)
-            .map(dLink => {
-              return (
-                <Link
-                  key={`dlink${dLink.name}`}
-                  link={dLink}
-                  classname="dropdown-item"
-                />
-              );
-            })}
+          {link.dropdown.map(dLink => {
+            return (
+              <Link
+                key={`dlink${dLink.name}`}
+                link={dLink}
+                classname="dropdown-item"
+              />
+            );
+          })}
         </div>
       </div>
     );
