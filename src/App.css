@@ -48,10 +48,8 @@ a {
 }
 
 .menu-btn {
-  background-color: #00000022;
-  border: 1px solid #000;
-  width: 27px;
-  height: 20px;
+  border: none;
+  background-color: #00000000;
 }
 
 .menu-input {
