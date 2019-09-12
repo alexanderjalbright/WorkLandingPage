@@ -16,7 +16,6 @@ export default class Menu extends Component {
     const { links, deleteLink, editLink, toggleEditable, addLink } = this.props;
     return (
       <div className="Menu">
-        <h1 style={{ textAlign: "center" }}>MENU</h1>
         <button
           className="menu-option-toggle"
           onClick={() => this.optionToggle("isMenuNavVisible")}

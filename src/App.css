@@ -45,6 +45,7 @@ a {
   background-color: var(--color-menu);
   height: 100vh;
   color: #fff;
+  width: 400px;
 }
 button {
   border: none;
@@ -70,6 +71,11 @@ button {
   scrollbar-width: 2px;
 }
 
+.menu-hide {
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
 .add-btn {
   color: #006b92;
 }
@@ -79,7 +85,7 @@ button {
 }
 
 .edit-links {
-  height: 20vh;
+  height: 30vh;
   overflow-y: scroll;
   margin: 0;
   border-bottom: 2px solid #111;

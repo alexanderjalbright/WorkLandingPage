@@ -14,7 +14,8 @@ export default class App extends Component {
     super();
     this.state = {
       links: [],
-      isMenuOpen: false
+      isMenuOpen: false,
+      menuWidth: "0px"
     };
   }
 
@@ -65,7 +66,11 @@ export default class App extends Component {
   };
 
   toggleMenu = () => {
-    this.setState({ isMenuOpen: !this.state.isMenuOpen });
+    const newMenuWidth = this.state.menuWidth === "0px" ? "400px" : "0px";
+    this.setState({
+      isMenuOpen: !this.state.isMenuOpen,
+      menuWidth: newMenuWidth
+    });
   };
 
   componentDidMount() {
@@ -76,7 +81,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.isMenuOpen && (
+        <div className="menu-hide" style={{ width: this.state.menuWidth }}>
           <Menu
             links={this.state.links}
             deleteLink={this.deleteLink}
@@ -84,7 +89,7 @@ export default class App extends Component {
             toggleEditable={this.toggleEditable}
             addLink={this.addLink}
           />
-        )}
+        </div>
         <div className="main">
           <Nav links={this.state.links} toggleMenu={this.toggleMenu} />
           <Alerts />
