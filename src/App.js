@@ -7,7 +7,7 @@ import Alerts from "./Components/Alerts";
 import Trackers from "./Components/Trackers";
 import Notes from "./Components/Notes";
 
-import { LoadLinks, SaveLinks } from "./Functions/Load.js";
+import { LoadLinks } from "./Functions/Load.js";
 
 export default class App extends Component {
   constructor() {

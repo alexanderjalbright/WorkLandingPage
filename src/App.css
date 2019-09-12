@@ -46,9 +46,12 @@ a {
   height: 100vh;
   color: #fff;
 }
+button {
+  border: none;
+  cursor: pointer;
+}
 
 .menu-btn {
-  border: none;
   background-color: #00000000;
 }
 
@@ -59,6 +62,14 @@ a {
   border-bottom: 2px solid #fff;
 }
 
+.menu-option-toggle {
+  height: auto;
+  background-color: #5f02ac;
+  width: 100%;
+  color: #fff;
+  scrollbar-width: 2px;
+}
+
 .add-btn {
   color: #006b92;
 }
@@ -66,6 +77,14 @@ a {
 .del-btn {
   color: #a00;
 }
+
+.edit-links {
+  height: 20vh;
+  overflow-y: scroll;
+  margin: 0;
+  border-bottom: 2px solid #111;
+}
+
 .Nav {
   background-color: var(--nav-background-color);
   grid-area: nav;

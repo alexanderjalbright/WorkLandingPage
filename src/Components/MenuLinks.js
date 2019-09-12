@@ -43,7 +43,7 @@ export class Link extends Component {
           <button
             className="menu-btn"
             style={{
-              color: link.isEditable ? "#aa0000" : "rgb(65, 100, 0)"
+              color: link.isEditable ? "#aa0000" : "#00ff00"
             }}
             onClick={() => toggleEditable(index, dIndex)}
           >

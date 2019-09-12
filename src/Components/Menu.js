@@ -1,83 +1,44 @@
 import React, { Component } from "react";
-import { Link, Dropdown } from "./MenuLinks";
+import MenuNav from "./MenuNav";
 
 export default class Menu extends Component {
   constructor() {
     super();
     this.state = {
-      name: ""
+      isMenuNavVisible: false
     };
+  }
+
+  optionToggle(option) {
+    this.setState({ [option]: !this.state[option] });
   }
   render() {
     const { links, deleteLink, editLink, toggleEditable, addLink } = this.props;
     return (
       <div className="Menu">
-        <h1>MENU</h1>
-        <ul className="edit-links">
-          {links.map((link, index) => (
-            <div key={link.name}>
-              <Link
-                link={link}
-                index={index}
-                deleteLink={deleteLink}
-                editLink={editLink}
-                toggleEditable={toggleEditable}
-              />
-              {link.dropdown === undefined || (
-                <Dropdown
-                  link={link}
-                  index={index}
-                  deleteLink={deleteLink}
-                  editLink={editLink}
-                  toggleEditable={toggleEditable}
-                  addLink={addLink}
-                />
-              )}
-            </div>
-          ))}
-          <li>
-            <input
-              className="menu-input"
-              style={{ width: "70px", marginRight: "5px" }}
-              value={this.state.name}
-              onChange={e => this.setState({ name: e.target.value })}
-              placeholder="Name"
-            />
-
-            <input
-              className="menu-input"
-              type="url"
-              value={this.state.path}
-              onChange={e => this.setState({ path: e.target.value })}
-              placeholder="https://"
-            />
-
-            <button
-              className="menu-btn add-btn"
-              onClick={() => {
-                const newLink = {
-                  name: this.state.name,
-                  path: this.state.path,
-                  isEditable: false,
-                  dropdown:
-                    this.state.path === undefined || this.state.path === ""
-                      ? [{ name: "", path: "" }]
-                      : undefined
-                };
-                addLink(newLink);
-                this.setState({ name: "", path: "" });
-              }}
-            >
-              +
-            </button>
-            <button
-              className="menu-btn del-btn"
-              onClick={() => this.setState({ name: "", path: "" })}
-            >
-              &times;
-            </button>
-          </li>
-        </ul>
+        <h1 style={{ textAlign: "center" }}>MENU</h1>
+        <button
+          className="menu-option-toggle"
+          onClick={() => this.optionToggle("isMenuNavVisible")}
+        >
+          <h3>
+            Nav Options{" "}
+            {this.state.isMenuNavVisible ? (
+              <span>&and;</span>
+            ) : (
+              <span>&or;</span>
+            )}
+          </h3>
+        </button>
+        {this.state.isMenuNavVisible && (
+          <MenuNav
+            links={links}
+            deleteLink={deleteLink}
+            editLink={editLink}
+            toggleEditable={toggleEditable}
+            addLink={addLink}
+          />
+        )}
       </div>
     );
   }
