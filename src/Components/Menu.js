@@ -9,35 +9,45 @@ export default class Menu extends Component {
     };
   }
 
-  optionToggle(option) {
-    this.setState({ [option]: !this.state[option] });
+  showOptionToggle(option) {
+    this.setState({ [option]: !this.state.isMenuNavVisible });
   }
   render() {
-    const { links, deleteLink, editLink, toggleEditable, addLink } = this.props;
+    const {
+      links,
+      deleteLink,
+      editLink,
+      toggleEditable,
+      addLink,
+      visible
+    } = this.props;
     return (
-      <div className="Menu">
-        <button
-          className="menu-option-toggle"
-          onClick={() => this.optionToggle("isMenuNavVisible")}
-        >
-          <h3>
-            Nav Options{" "}
-            {this.state.isMenuNavVisible ? (
-              <span>&and;</span>
-            ) : (
-              <span>&or;</span>
-            )}
-          </h3>
-        </button>
-        {this.state.isMenuNavVisible && (
-          <MenuNav
-            links={links}
-            deleteLink={deleteLink}
-            editLink={editLink}
-            toggleEditable={toggleEditable}
-            addLink={addLink}
-          />
-        )}
+      <div className="menu-hide" style={{ width: visible ? "400px" : "0px" }}>
+        <div className="Menu">
+          <div>
+            <button
+              className="menu-option-toggle"
+              onClick={() => this.showOptionToggle("isMenuNavVisible")}
+            >
+              <h3>
+                Nav Options{" "}
+                {this.state.isMenuNavVisible ? (
+                  <span>&and;</span>
+                ) : (
+                  <span>&or;</span>
+                )}
+              </h3>
+            </button>
+            <MenuNav
+              visible={this.state.isMenuNavVisible}
+              links={links}
+              deleteLink={deleteLink}
+              editLink={editLink}
+              toggleEditable={toggleEditable}
+              addLink={addLink}
+            />
+          </div>
+        </div>
       </div>
     );
   }
