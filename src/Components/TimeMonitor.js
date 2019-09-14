@@ -4,8 +4,6 @@ export default class TimeMonitor extends Component {
   constructor() {
     super();
     this.state = {
-      startTime: "8:30:00",
-      endTime: "23:59:00",
       remainingTime: "",
       remainingPercent: "",
       elapsedtime: "",
@@ -20,7 +18,8 @@ export default class TimeMonitor extends Component {
           <div
             style={{ width: `${this.state.elapsedPercent}%` }}
             className="time-bar"
-          >
+          ></div>
+          <div className="time-info">
             <div>{`Elapsed: ${this.state.elapsedTime}(${this.state.elapsedPercent}%)`}</div>
             <div>{`Remaining: ${this.state.remainingTime}(${this.state.remainingPercent}%)`}</div>
           </div>
@@ -64,9 +63,9 @@ export default class TimeMonitor extends Component {
     const hour = now.getHours();
     const totalSeconds = this.convertSecs(hour, minutes, seconds);
 
-    const startTimeSeconds = this.splitTime(this.state.startTime);
+    const startTimeSeconds = this.splitTime(this.props.startTime);
 
-    const endTimeSeconds = this.splitTime(this.state.endTime);
+    const endTimeSeconds = this.splitTime(this.props.endTime);
 
     const elapsedPercent = (
       ((totalSeconds - startTimeSeconds) /

@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import MenuNav from "./MenuNav";
+import MenuTimeMonitor from "./MenuTimeMonitor";
+
+import MenuOption from "./MenuOption";
 
 export default class Menu extends Component {
   constructor() {
     super();
     this.state = {
-      isMenuNavVisible: false
+      isMenuNavVisible: false,
+      isMenuTimeMonitorVisible: false
     };
   }
 
@@ -19,39 +23,49 @@ export default class Menu extends Component {
       visible
     } = this.props;
 
+    const menuNav = (
+      <MenuNav
+        visible={this.state.isMenuNavVisible}
+        links={links}
+        deleteLink={deleteLink}
+        editLink={editLink}
+        toggleEditable={toggleEditable}
+        addLink={addLink}
+      />
+    );
+
+    const menuTimeMonitor = (
+      <MenuTimeMonitor
+        visible={this.state.isMenuTimeMonitorVisible}
+        startTime={this.props.startTime}
+        endTime={this.props.endTime}
+        setTimeMonitor={this.props.setTimeMonitor}
+      />
+    );
     return (
       <div className="menu-hide" style={{ width: visible ? "400px" : "0px" }}>
-        <div className="Menu">
-          <div>
-            <button
-              name="isMenuNavVisible"
-              className="menu-option-toggle"
-              onClick={this.showOptionToggle}
-            >
-              <h3>
-                Nav Options{" "}
-                {this.state.isMenuNavVisible ? (
-                  <span>&and;</span>
-                ) : (
-                  <span>&or;</span>
-                )}
-              </h3>
-            </button>
-            <MenuNav
-              visible={this.state.isMenuNavVisible}
-              links={links}
-              deleteLink={deleteLink}
-              editLink={editLink}
-              toggleEditable={toggleEditable}
-              addLink={addLink}
-            />
-          </div>
+        <div className="menu">
+          <MenuOption
+            name="Nav"
+            visibilityVar="isMenuNavVisible"
+            option={menuNav}
+            visible={this.state.isMenuNavVisible}
+            showOptionToggle={this.showOptionToggle}
+          />
+          <MenuOption
+            name="Time Monitor"
+            visibilityVar="isMenuTimeMonitorVisible"
+            option={menuTimeMonitor}
+            visible={this.state.isMenuTimeMonitorVisible}
+            showOptionToggle={this.showOptionToggle}
+          />
         </div>
       </div>
     );
   }
-
   showOptionToggle = e => {
-    this.setState({ [e.currentTarget.name]: !this.state.isMenuNavVisible });
+    this.setState({
+      [e.currentTarget.name]: !this.state[e.currentTarget.name]
+    });
   };
 }

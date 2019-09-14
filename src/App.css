@@ -40,11 +40,13 @@ a {
   grid-gap: 1vw;
 }
 
-.Menu {
+.menu {
   background-color: var(--color-menu);
   height: 100vh;
   color: #fff;
   width: 400px;
+  display: flex;
+  flex-direction: column;
 }
 button {
   border: none;
@@ -85,7 +87,14 @@ button {
 
 .edit-links {
   height: 30vh;
-  overflow-y: scroll;
+}
+
+.time-monitor-times {
+  height: 10vh;
+}
+
+.menu-option-content {
+  overflow-y: auto;
   margin: 0;
   border-bottom: 2px solid #111;
   transition: 0.5s ease;
@@ -151,11 +160,24 @@ button {
   background-color: #333;
   height: 80%;
   border: 2px solid #000;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .time-bar {
   background-color: #006b92;
   height: 100%;
+}
+
+.time-info {
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  top: -60%;
+  left: 0;
 }
 
 .Alerts {

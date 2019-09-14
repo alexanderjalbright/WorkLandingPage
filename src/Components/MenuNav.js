@@ -10,17 +10,15 @@ export default class Menu extends Component {
   }
 
   render() {
-    const {
-      links,
-      deleteLink,
-      editLink,
-      toggleEditable,
-      addLink,
-      visible
-    } = this.props;
+    const { links, deleteLink, editLink, toggleEditable, addLink } = this.props;
 
     return (
-      <ul className="edit-links" style={{ height: visible ? "30vh" : "0px" }}>
+      <ul
+        className="edit-links menu-option-content"
+        style={{
+          height: this.props.visible ? "30vh" : "0px"
+        }}
+      >
         {links.map((link, index) => (
           <div key={link.name}>
             <Link

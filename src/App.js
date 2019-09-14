@@ -14,7 +14,9 @@ export default class App extends Component {
     super();
     this.state = {
       links: [],
-      isMenuVisible: false
+      isMenuVisible: false,
+      startTime: "08:30:00",
+      endTime: "17:00:00"
     };
   }
 
@@ -28,11 +30,17 @@ export default class App extends Component {
           editLink={this.editLink}
           toggleEditable={this.toggleEditable}
           addLink={this.addLink}
+          startTime={this.state.startTime}
+          endTime={this.state.endTime}
+          setTimeMonitor={this.setTimeMonitor}
         />
         <div className="main">
           <Nav links={this.state.links} toggleMenu={this.toggleMenu} />
           <Alerts />
-          <TimeMonitor />
+          <TimeMonitor
+            startTime={this.state.startTime}
+            endTime={this.state.endTime}
+          />
           <Notes />
         </div>
       </div>
@@ -91,5 +99,9 @@ export default class App extends Component {
 
   toggleMenu = () => {
     this.setState({ isMenuVisible: !this.state.isMenuVisible });
+  };
+
+  setTimeMonitor = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 }
