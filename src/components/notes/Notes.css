@@ -1,5 +1,3 @@
 .Notes {
-  background-color: var(--color-notes);
-
   grid-area: notes;
 }

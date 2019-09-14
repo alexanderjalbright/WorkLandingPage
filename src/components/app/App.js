@@ -16,7 +16,12 @@ export default class App extends Component {
       links: [],
       isMenuVisible: false,
       startTime: "08:30:00",
-      endTime: "17:00:00"
+      endTime: "17:00:00",
+      navBarColor: "#333333",
+      timeMonitorColor: "#3e0070",
+      alertsColor: "#aa0000",
+      notesColor: "#416400",
+      menuColor: "#3e0070"
     };
   }
 
@@ -24,13 +29,22 @@ export default class App extends Component {
     return (
       <div className="App">
         <div className="main">
-          <Nav links={this.state.links} toggleMenu={this.toggleMenu} />
-          <Alerts />
+          <Nav
+            links={this.state.links}
+            toggleMenu={this.toggleMenu}
+            navBarColor={this.state.navBarColor}
+          />
+          <Alerts
+            setAppState={this.setAppState}
+            alertsColor={this.state.alertsColor}
+          />
           <TimeMonitor
             startTime={this.state.startTime}
             endTime={this.state.endTime}
+            setAppState={this.setAppState}
+            timeMonitorColor={this.state.timeMonitorColor}
           />
-          <Notes />
+          <Notes notesColor={this.state.notesColor} />
         </div>
         <Menu
           visible={this.state.isMenuVisible}
@@ -41,7 +55,12 @@ export default class App extends Component {
           addLink={this.addLink}
           startTime={this.state.startTime}
           endTime={this.state.endTime}
-          setTimeMonitor={this.setTimeMonitor}
+          setAppState={this.setAppState}
+          navBarColor={this.state.navBarColor}
+          timeMonitorColor={this.state.timeMonitorColor}
+          alertsColor={this.state.alertsColor}
+          notesColor={this.state.notesColor}
+          menuColor={this.state.menuColor}
         />
       </div>
     );
@@ -91,7 +110,8 @@ export default class App extends Component {
     this.setState({ isMenuVisible: !this.state.isMenuVisible });
   };
 
-  setTimeMonitor = e => {
+  setAppState = e => {
+    console.log(e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   };
 }

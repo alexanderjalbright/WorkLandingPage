@@ -1,8 +1,8 @@
-.Nav {
-  background-color: var(--nav-background-color);
+.nav {
   grid-area: nav;
   display: flex;
-  color: var(--nav-link-color);
+  /* color: var(--nav-link-color); */
+  color: auto;
   height: var(--nav-height);
 }
 

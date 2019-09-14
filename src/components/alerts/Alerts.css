@@ -1,5 +1,3 @@
 .Alerts {
-  background-color: var(--color-alerts);
-
   grid-area: alerts;
 }

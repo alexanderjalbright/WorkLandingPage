@@ -3,6 +3,13 @@ import "./Alerts.css";
 
 export default class Alerts extends Component {
   render() {
-    return <div className="Alerts">alerts</div>;
+    return (
+      <div
+        className="Alerts"
+        style={{ backgroundColor: this.props.alertsColor }}
+      >
+        alerts
+      </div>
+    );
   }
 }

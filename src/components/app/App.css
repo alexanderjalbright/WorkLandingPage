@@ -7,7 +7,7 @@
   --card-height: 200px;
 
   --color-accent: #006b92;
-  --color-notes: rgb(65, 100, 0);
+  --color-notes: #416400;
   --color-menu: #3e0070;
   --color-time-monitor: #3e0070;
   --color-alerts: #aa0000;
@@ -18,6 +18,10 @@ html {
   line-height: 1.6em;
   font-family: "Ubuntu", sans-serif;
   background-color: #222;
+}
+
+ul {
+  margin: 0;
 }
 
 a {
@@ -51,16 +55,6 @@ button {
 
 .del-btn {
   color: #a00;
-}
-
-.time-monitor {
-  background-color: var(--color-time-monitor);
-
-  grid-area: time;
-  display: grid;
-  grid-template-areas: "title title title" ". bar .";
-  grid-template-rows: 20% 80%;
-  grid-template-columns: 10% 80% 10%;
 }
 
 .card-title {

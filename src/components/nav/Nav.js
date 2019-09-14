@@ -5,9 +5,9 @@ import cog from "../../assets/cog.png";
 
 export default class Nav extends Component {
   render() {
-    const { links, toggleMenu } = this.props;
+    const { links, toggleMenu, navBarColor } = this.props;
     return (
-      <div className="Nav">
+      <div className="nav" style={{ backgroundColor: navBarColor }}>
         {links !== undefined &&
           links.map(link =>
             link.dropdown !== undefined ? (

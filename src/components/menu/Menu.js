@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Menu.css";
 import MenuNav from "./MenuNav";
 import MenuTimeMonitor from "./MenuTimeMonitor";
+import MenuTheme from "./MenuTheme";
 import MenuOption from "./MenuOption";
 
 export default class Menu extends Component {
@@ -9,7 +10,8 @@ export default class Menu extends Component {
     super();
     this.state = {
       isMenuNavVisible: false,
-      isMenuTimeMonitorVisible: false
+      isMenuTimeMonitorVisible: false,
+      isMenuThemeVisible: false
     };
   }
 
@@ -20,7 +22,15 @@ export default class Menu extends Component {
       editLink,
       toggleEditable,
       addLink,
-      visible
+      visible,
+      startTime,
+      endTime,
+      setAppState,
+      navBarColor,
+      timeMonitorColor,
+      alertsColor,
+      notesColor,
+      menuColor
     } = this.props;
 
     const menuNav = (
@@ -37,27 +47,54 @@ export default class Menu extends Component {
     const menuTimeMonitor = (
       <MenuTimeMonitor
         visible={this.state.isMenuTimeMonitorVisible}
-        startTime={this.props.startTime}
-        endTime={this.props.endTime}
-        setTimeMonitor={this.props.setTimeMonitor}
+        startTime={startTime}
+        endTime={endTime}
+        setAppState={this.props.setAppState}
+      />
+    );
+
+    const menuThemeOption = (
+      <MenuTheme
+        setAppState={setAppState}
+        navBarColor={navBarColor}
+        timeMonitorColor={timeMonitorColor}
+        alertsColor={alertsColor}
+        notesColor={notesColor}
+        menuColor={menuColor}
       />
     );
     return (
-      <div className="Menu" style={{ width: visible ? "400px" : "0px" }}>
+      <div
+        className="Menu"
+        style={{ width: visible ? "400px" : "0px", backgroundColor: menuColor }}
+      >
         <div className="menu-content">
           <MenuOption
             name="Nav"
-            visibilityVar="isMenuNavVisible"
             option={menuNav}
+            visibilityVar="isMenuNavVisible"
             visible={this.state.isMenuNavVisible}
             showOptionToggle={this.showOptionToggle}
+            openHeight="30vh"
+            overflowY="scroll"
           />
           <MenuOption
             name="Time Monitor"
-            visibilityVar="isMenuTimeMonitorVisible"
             option={menuTimeMonitor}
+            visibilityVar="isMenuTimeMonitorVisible"
             visible={this.state.isMenuTimeMonitorVisible}
             showOptionToggle={this.showOptionToggle}
+            openHeight="8vh"
+            overflowY="hidden"
+          />
+          <MenuOption
+            name="Theme"
+            option={menuThemeOption}
+            visibilityVar="isMenuThemeVisible"
+            visible={this.state.isMenuThemeVisible}
+            showOptionToggle={this.showOptionToggle}
+            openHeight="30vh"
+            overflowY="scroll"
           />
         </div>
       </div>

@@ -14,7 +14,15 @@ export default class MenuOption extends Component {
             {this.props.visible ? <span>&and;</span> : <span>&or;</span>}
           </h3>
         </button>
-        {this.props.option}
+        <div
+          className="menu-option-content"
+          style={{
+            height: this.props.visible ? this.props.openHeight : "0px",
+            overflowY: this.props.overflowY
+          }}
+        >
+          {this.props.option}
+        </div>
       </div>
     );
   }

@@ -13,7 +13,10 @@ export default class TimeMonitor extends Component {
   }
   render() {
     return (
-      <div className="time-monitor">
+      <div
+        className="time-monitor"
+        style={{ backgroundColor: this.props.timeMonitorColor }}
+      >
         <div className="card-title">Time Monitor</div>
         <div className="time-bar-container">
           <div

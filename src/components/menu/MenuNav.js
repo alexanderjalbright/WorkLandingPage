@@ -13,12 +13,7 @@ export default class Menu extends Component {
     const { links, deleteLink, editLink, toggleEditable, addLink } = this.props;
 
     return (
-      <ul
-        className="edit-links menu-option-content"
-        style={{
-          height: this.props.visible ? "30vh" : "0px"
-        }}
-      >
+      <ul>
         {links.map((link, index) => (
           <div key={link.name}>
             <Link
