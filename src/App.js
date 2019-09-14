@@ -4,7 +4,7 @@ import "./App.css";
 import Nav from "./Components/Nav";
 import Menu from "./Components/Menu";
 import Alerts from "./Components/Alerts";
-import Trackers from "./Components/Trackers";
+import TimeMonitor from "./Components/TimeMonitor";
 import Notes from "./Components/Notes";
 
 import { LoadLinks } from "./Functions/Load.js";
@@ -32,7 +32,7 @@ export default class App extends Component {
         <div className="main">
           <Nav links={this.state.links} toggleMenu={this.toggleMenu} />
           <Alerts />
-          <Trackers />
+          <TimeMonitor />
           <Notes />
         </div>
       </div>
