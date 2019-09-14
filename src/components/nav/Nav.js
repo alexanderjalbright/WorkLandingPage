@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import "./Nav.css";
 import { Link, Dropdown } from "./NavLinks.js";
+import cog from "../../assets/cog.png";
 
 export default class Nav extends Component {
   render() {
     const { links, toggleMenu } = this.props;
     return (
       <div className="Nav">
-        <button className="menu-btn nav-link nav-item" onClick={toggleMenu}>
-          Menu
-        </button>
         {links !== undefined &&
           links.map(link =>
             link.dropdown !== undefined ? (
@@ -18,6 +16,13 @@ export default class Nav extends Component {
               <Link key={`nav${link.name}`} link={link} classname="nav-item" />
             )
           )}
+        <button
+          style={{ width: "50px", marginLeft: "auto" }}
+          className="menu-btn nav-link nav-item"
+          onClick={toggleMenu}
+        >
+          <img style={{ height: "50%" }} src={cog} alt="Menu" />
+        </button>
       </div>
     );
   }

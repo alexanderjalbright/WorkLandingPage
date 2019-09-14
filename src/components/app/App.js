@@ -23,6 +23,15 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="main">
+          <Nav links={this.state.links} toggleMenu={this.toggleMenu} />
+          <Alerts />
+          <TimeMonitor
+            startTime={this.state.startTime}
+            endTime={this.state.endTime}
+          />
+          <Notes />
+        </div>
         <Menu
           visible={this.state.isMenuVisible}
           links={this.state.links}
@@ -34,15 +43,6 @@ export default class App extends Component {
           endTime={this.state.endTime}
           setTimeMonitor={this.setTimeMonitor}
         />
-        <div className="main">
-          <Nav links={this.state.links} toggleMenu={this.toggleMenu} />
-          <Alerts />
-          <TimeMonitor
-            startTime={this.state.startTime}
-            endTime={this.state.endTime}
-          />
-          <Notes />
-        </div>
       </div>
     );
   }
