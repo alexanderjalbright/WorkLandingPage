@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import Nav from "./Components/Nav";
-import Menu from "./Components/Menu";
-import Alerts from "./Components/Alerts";
-import TimeMonitor from "./Components/TimeMonitor";
-import Notes from "./Components/Notes";
+import Nav from "../nav/Nav";
+import Menu from "../menu/Menu";
+import Alerts from "../alerts/Alerts";
+import TimeMonitor from "../timemonitor/TimeMonitor";
+import Notes from "../notes/Notes";
 
-import { LoadLinks } from "./Functions/Load.js";
+import { LoadLinks } from "../../Functions/Load";
 
 export default class App extends Component {
   constructor() {
