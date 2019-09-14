@@ -18,6 +18,31 @@ export default class App extends Component {
     };
   }
 
+  render() {
+    return (
+      <div className="App">
+        <Menu
+          visible={this.state.isMenuVisible}
+          links={this.state.links}
+          deleteLink={this.deleteLink}
+          editLink={this.editLink}
+          toggleEditable={this.toggleEditable}
+          addLink={this.addLink}
+        />
+        <div className="main">
+          <Nav links={this.state.links} toggleMenu={this.toggleMenu} />
+          <Alerts />
+          <Trackers />
+          <Notes />
+        </div>
+      </div>
+    );
+  }
+
+  componentDidMount = () => {
+    this.setState({ links: LoadLinks() });
+  };
+
   saveLinks = newLinks => {
     newLinks
       .sort((a, b) => a.name > b.name)
@@ -67,30 +92,4 @@ export default class App extends Component {
   toggleMenu = () => {
     this.setState({ isMenuVisible: !this.state.isMenuVisible });
   };
-
-  componentDidMount() {
-    this.setState({
-      links: LoadLinks()
-    });
-  }
-  render() {
-    return (
-      <div className="App">
-        <Menu
-          visible={this.state.isMenuVisible}
-          links={this.state.links}
-          deleteLink={this.deleteLink}
-          editLink={this.editLink}
-          toggleEditable={this.toggleEditable}
-          addLink={this.addLink}
-        />
-        <div className="main">
-          <Nav links={this.state.links} toggleMenu={this.toggleMenu} />
-          <Alerts />
-          <Trackers />
-          <Notes />
-        </div>
-      </div>
-    );
-  }
 }

@@ -6,10 +6,7 @@ export default class Nav extends Component {
     const { links, toggleMenu } = this.props;
     return (
       <div className="Nav">
-        <button
-          className="menu-btn nav-link nav-item"
-          onClick={() => toggleMenu()}
-        >
+        <button className="menu-btn nav-link nav-item" onClick={toggleMenu}>
           Menu
         </button>
         {links !== undefined &&

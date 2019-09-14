@@ -1,22 +1,9 @@
 import React, { Component } from "react";
 
-function onMouseEnter(e) {
-  e.currentTarget.lastChild.style.display = "flex";
-}
-function onMouseLeave(e) {
-  e.currentTarget.lastChild.style.display = "none";
-}
-
-function targetAndRel(bool) {
-  return bool
-    ? { target: "", rel: "" }
-    : { target: "_blank", rel: "noopener noreferrer" };
-}
-
 export class Link extends Component {
   render() {
     const { link, classname } = this.props;
-    const { target, rel } = targetAndRel(link.file);
+    const { target, rel } = this.targetAndRel(link.file);
     return (
       <a
         key={`navLink${link.name}`}
@@ -29,6 +16,11 @@ export class Link extends Component {
       </a>
     );
   }
+
+  targetAndRel = isFile =>
+    isFile
+      ? { target: "", rel: "" }
+      : { target: "_blank", rel: "noopener noreferrer" };
 }
 
 export class Dropdown extends Component {
@@ -38,10 +30,10 @@ export class Dropdown extends Component {
       <div
         key={`dropdown${link.name}`}
         className="dropdown-cover"
-        onMouseEnter={e => onMouseEnter(e)}
-        onMouseLeave={e => onMouseLeave(e)}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
       >
-        <div className="nav-item nav-link">{link.name} ▼</div>
+        <div className="nav-item nav-link">{link.name} &nabla;</div>
         <div className="dropdown">
           {link.dropdown.map(dLink => {
             return (
@@ -56,4 +48,12 @@ export class Dropdown extends Component {
       </div>
     );
   }
+
+  onMouseEnter = e => {
+    e.currentTarget.lastChild.style.display = "flex";
+  };
+
+  onMouseLeave = e => {
+    e.currentTarget.lastChild.style.display = "none";
+  };
 }

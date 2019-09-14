@@ -9,9 +9,6 @@ export default class Menu extends Component {
     };
   }
 
-  showOptionToggle(option) {
-    this.setState({ [option]: !this.state.isMenuNavVisible });
-  }
   render() {
     const {
       links,
@@ -21,13 +18,15 @@ export default class Menu extends Component {
       addLink,
       visible
     } = this.props;
+
     return (
       <div className="menu-hide" style={{ width: visible ? "400px" : "0px" }}>
         <div className="Menu">
           <div>
             <button
+              name="isMenuNavVisible"
               className="menu-option-toggle"
-              onClick={() => this.showOptionToggle("isMenuNavVisible")}
+              onClick={this.showOptionToggle}
             >
               <h3>
                 Nav Options{" "}
@@ -51,4 +50,8 @@ export default class Menu extends Component {
       </div>
     );
   }
+
+  showOptionToggle = e => {
+    this.setState({ [e.currentTarget.name]: !this.state.isMenuNavVisible });
+  };
 }

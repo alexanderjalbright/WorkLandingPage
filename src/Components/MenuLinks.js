@@ -17,63 +17,68 @@ export class Link extends Component {
       editLink,
       toggleEditable
     } = this.props;
-    return (
+
+    const editButtons = (
+      <span>
+        <button
+          className="menu-btn"
+          style={{
+            color: link.isEditable ? "#aa0000" : "#00ff00"
+          }}
+          onClick={() => toggleEditable(index, dIndex)}
+        >
+          &Delta;
+        </button>
+      </span>
+    );
+
+    return link.isEditable ? (
       <li key={`menuLink${index}${dIndex}`}>
-        {link.isEditable ? (
-          <span>
+        <span>
+          <input
+            className="menu-input"
+            style={{ width: "70px", marginRight: "5px" }}
+            value={this.state.name}
+            onChange={e => this.setState({ name: e.target.value })}
+          />
+          {link.path === undefined || (
             <input
               className="menu-input"
-              style={{ width: "70px", marginRight: "5px" }}
-              value={this.state.name}
-              onChange={e => this.setState({ name: e.target.value })}
+              type="url"
+              value={this.state.path}
+              onChange={e => this.setState({ path: e.target.value })}
             />
-            {link.path === undefined || (
-              <input
-                className="menu-input"
-                type="url"
-                value={this.state.path}
-                onChange={e => this.setState({ path: e.target.value })}
-              />
-            )}
-          </span>
-        ) : (
-          <span>{link.name}</span>
-        )}
+          )}
+        </span>
+        {editButtons}
+
         <span>
           <button
-            className="menu-btn"
-            style={{
-              color: link.isEditable ? "#aa0000" : "#00ff00"
+            className="menu-btn add-btn"
+            onClick={() => {
+              const newLink = {
+                name: this.state.name,
+                path: this.state.path,
+                isEditable: false,
+                dropdown: link.dropdown
+              };
+              editLink(index, dIndex, newLink);
             }}
-            onClick={() => toggleEditable(index, dIndex)}
           >
-            &Delta;
+            +
+          </button>
+          <button
+            className="menu-btn del-btn"
+            onClick={() => deleteLink(index, dIndex)}
+          >
+            &times;
           </button>
         </span>
-        {link.isEditable && (
-          <span>
-            <button
-              className="menu-btn add-btn"
-              onClick={() => {
-                const newLink = {
-                  name: this.state.name,
-                  path: this.state.path,
-                  isEditable: false,
-                  dropdown: link.dropdown
-                };
-                editLink(index, dIndex, newLink);
-              }}
-            >
-              +
-            </button>
-            <button
-              className="menu-btn del-btn"
-              onClick={() => deleteLink(index, dIndex)}
-            >
-              &times;
-            </button>
-          </span>
-        )}
+      </li>
+    ) : (
+      <li>
+        <span>{link.name}</span>
+        {editButtons}
       </li>
     );
   }
@@ -87,6 +92,7 @@ export class Dropdown extends Component {
       path: ""
     };
   }
+
   render() {
     const {
       link,
@@ -96,6 +102,7 @@ export class Dropdown extends Component {
       toggleEditable,
       addLink
     } = this.props;
+
     return (
       <div>
         <ul>

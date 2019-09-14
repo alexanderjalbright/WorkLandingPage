@@ -8,6 +8,7 @@ export default class Menu extends Component {
       name: ""
     };
   }
+
   render() {
     const {
       links,
@@ -17,6 +18,7 @@ export default class Menu extends Component {
       addLink,
       visible
     } = this.props;
+
     return (
       <ul className="edit-links" style={{ height: visible ? "30vh" : "0px" }}>
         {links.map((link, index) => (
@@ -42,18 +44,20 @@ export default class Menu extends Component {
         ))}
         <li>
           <input
+            name="name"
             className="menu-input"
             style={{ width: "70px", marginRight: "5px" }}
             value={this.state.name}
-            onChange={e => this.setState({ name: e.target.value })}
+            onChange={this.setLinkProps}
             placeholder="Name"
           />
 
           <input
+            name="path"
             className="menu-input"
             type="url"
             value={this.state.path}
-            onChange={e => this.setState({ path: e.target.value })}
+            onChange={this.setLinkProps}
             placeholder="https://"
           />
 
@@ -85,4 +89,8 @@ export default class Menu extends Component {
       </ul>
     );
   }
+
+  setLinkProps = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
 }
