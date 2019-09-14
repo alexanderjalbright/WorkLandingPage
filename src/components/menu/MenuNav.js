@@ -65,7 +65,6 @@ export default class Menu extends Component {
               const newLink = {
                 name: this.state.name,
                 path: this.state.path,
-                isEditable: false,
                 dropdown:
                   this.state.path === undefined || this.state.path === ""
                     ? [{ name: "", path: "" }]

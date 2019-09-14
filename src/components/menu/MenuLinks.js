@@ -9,30 +9,9 @@ export class Link extends Component {
     };
   }
   render() {
-    const {
-      link,
-      index,
-      dIndex,
-      deleteLink,
-      editLink,
-      toggleEditable
-    } = this.props;
+    const { link, index, dIndex, deleteLink, editLink } = this.props;
 
-    const editButtons = (
-      <span>
-        <button
-          className="menu-btn"
-          style={{
-            color: link.isEditable ? "#aa0000" : "#00ff00"
-          }}
-          onClick={() => toggleEditable(index, dIndex)}
-        >
-          &Delta;
-        </button>
-      </span>
-    );
-
-    return link.isEditable ? (
+    return (
       <li key={`menuLink${index}${dIndex}`}>
         <span>
           <input
@@ -42,15 +21,17 @@ export class Link extends Component {
             onChange={e => this.setState({ name: e.target.value })}
           />
           {link.path === undefined || (
-            <input
-              className="menu-input"
-              type="url"
-              value={this.state.path}
-              onChange={e => this.setState({ path: e.target.value })}
-            />
+            <span>
+              &#10132;&nbsp;
+              <input
+                className="menu-input"
+                type="url"
+                value={this.state.path}
+                onChange={e => this.setState({ path: e.target.value })}
+              />
+            </span>
           )}
         </span>
-        {editButtons}
 
         <span>
           <button
@@ -59,7 +40,6 @@ export class Link extends Component {
               const newLink = {
                 name: this.state.name,
                 path: this.state.path,
-                isEditable: false,
                 dropdown: link.dropdown
               };
               editLink(index, dIndex, newLink);
@@ -75,11 +55,6 @@ export class Link extends Component {
           </button>
         </span>
       </li>
-    ) : (
-      <li>
-        <span>{link.name}</span>
-        {editButtons}
-      </li>
     );
   }
 }
@@ -94,14 +69,7 @@ export class Dropdown extends Component {
   }
 
   render() {
-    const {
-      link,
-      index,
-      deleteLink,
-      editLink,
-      toggleEditable,
-      addLink
-    } = this.props;
+    const { link, index, deleteLink, editLink, addLink } = this.props;
 
     return (
       <div>
@@ -115,7 +83,6 @@ export class Dropdown extends Component {
                 dIndex={dIndex}
                 deleteLink={deleteLink}
                 editLink={editLink}
-                toggleEditable={toggleEditable}
               />
             );
           })}
@@ -141,8 +108,7 @@ export class Dropdown extends Component {
               onClick={() => {
                 const newLink = {
                   name: this.state.name,
-                  path: this.state.path,
-                  isEditable: false
+                  path: this.state.path
                 };
                 addLink(newLink, index);
                 this.setState({ name: "", path: "" });

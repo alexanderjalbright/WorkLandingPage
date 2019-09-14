@@ -7,7 +7,7 @@ import Alerts from "../alerts/Alerts";
 import TimeMonitor from "../timemonitor/TimeMonitor";
 import Notes from "../notes/Notes";
 
-import { LoadLinks } from "../../Functions/Load";
+import { LoadLinks } from "../../functions/Load";
 
 export default class App extends Component {
   constructor() {
@@ -57,7 +57,6 @@ export default class App extends Component {
       .forEach(link => {
         link.dropdown === undefined ||
           link.dropdown.sort((a, b) => a.name > b.name);
-        link.isEditable = false;
       });
 
     localStorage.setItem("links", JSON.stringify(newLinks));
@@ -86,15 +85,6 @@ export default class App extends Component {
       ? modLinks.push(newLink)
       : modLinks[index].dropdown.push(newLink);
     this.saveLinks(modLinks);
-  };
-
-  toggleEditable = (index, dIndex) => {
-    const modLinks = [...this.state.links];
-    dIndex === undefined
-      ? (modLinks[index].isEditable = !modLinks[index].isEditable)
-      : (modLinks[index].dropdown[dIndex].isEditable = !modLinks[index]
-          .dropdown[dIndex].isEditable);
-    this.setState({ links: modLinks });
   };
 
   toggleMenu = () => {

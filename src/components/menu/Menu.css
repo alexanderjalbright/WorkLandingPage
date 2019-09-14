@@ -31,10 +31,10 @@
 }
 
 .menu-input {
-  background-color: #240042;
+  background-color: #24004200;
   color: #fff;
   border: none;
-  border-bottom: 2px solid #fff;
+  /* border-bottom: 1px solid #fff; */
 }
 
 .edit-links {
