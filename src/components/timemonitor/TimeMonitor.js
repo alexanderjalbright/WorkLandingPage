@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./TimeMonitor.css";
 
 export default class TimeMonitor extends Component {
   constructor() {

@@ -40,41 +40,9 @@ a {
   grid-gap: 1vw;
 }
 
-.menu {
-  background-color: var(--color-menu);
-  height: 100vh;
-  color: #fff;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-}
 button {
   border: none;
   cursor: pointer;
-}
-
-.menu-btn {
-  background-color: #00000000;
-}
-
-.menu-input {
-  background-color: #240042;
-  color: #fff;
-  border: none;
-  border-bottom: 2px solid #fff;
-}
-
-.menu-option-toggle {
-  height: auto;
-  background-color: #5f02ac;
-  width: 100%;
-  color: #fff;
-  scrollbar-width: 2px;
-}
-
-.menu-hide {
-  overflow-x: hidden;
-  transition: 0.5s ease;
 }
 
 .add-btn {
@@ -83,60 +51,6 @@ button {
 
 .del-btn {
   color: #a00;
-}
-
-.edit-links {
-  height: 30vh;
-}
-
-.time-monitor-times {
-  height: 10vh;
-}
-
-.menu-option-content {
-  overflow-y: auto;
-  margin: 0;
-  border-bottom: 2px solid #111;
-  transition: 0.5s ease;
-}
-
-.Nav {
-  background-color: var(--nav-background-color);
-  grid-area: nav;
-  display: flex;
-  color: var(--nav-link-color);
-  height: var(--nav-height);
-}
-
-.nav-item {
-  height: 100%;
-  display: grid;
-  text-align: center;
-  align-items: center;
-  cursor: pointer;
-  padding: 0 10px;
-}
-
-.nav-link {
-  color: var(--nav-link-color);
-}
-
-.nav-link:hover {
-  /* color: var(--nav-background-color); */
-  background-color: var(--nav-hover-color);
-}
-
-.dropdown {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  z-index: 10;
-  background-color: #333;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 1);
-}
-
-.dropdown-item {
-  padding: 3px 10px;
 }
 
 .time-monitor {
@@ -153,41 +67,4 @@ button {
   grid-area: title;
   text-align: center;
   color: #fff;
-}
-
-.time-bar-container {
-  grid-area: bar;
-  background-color: #333;
-  height: 80%;
-  border: 2px solid #000;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.time-bar {
-  background-color: #006b92;
-  height: 100%;
-}
-
-.time-info {
-  color: #fff;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-  top: -60%;
-  left: 0;
-}
-
-.Alerts {
-  background-color: var(--color-alerts);
-
-  grid-area: alerts;
-}
-
-.Notes {
-  background-color: var(--color-notes);
-
-  grid-area: notes;
 }

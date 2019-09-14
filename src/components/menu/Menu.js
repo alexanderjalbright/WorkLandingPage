@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import "./Menu.css";
 import MenuNav from "./MenuNav";
 import MenuTimeMonitor from "./MenuTimeMonitor";
-
 import MenuOption from "./MenuOption";
 
 export default class Menu extends Component {
@@ -43,8 +43,8 @@ export default class Menu extends Component {
       />
     );
     return (
-      <div className="menu-hide" style={{ width: visible ? "400px" : "0px" }}>
-        <div className="menu">
+      <div className="Menu" style={{ width: visible ? "400px" : "0px" }}>
+        <div className="menu-content">
           <MenuOption
             name="Nav"
             visibilityVar="isMenuNavVisible"

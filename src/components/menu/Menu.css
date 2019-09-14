@@ -1,0 +1,46 @@
+.Menu {
+  overflow-x: hidden;
+  transition: 0.5s ease;
+}
+
+.menu-content {
+  background-color: var(--color-menu);
+  height: 100vh;
+  color: #fff;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-option-toggle {
+  height: auto;
+  background-color: #5f02ac;
+  width: 100%;
+  color: #fff;
+}
+
+.menu-option-content {
+  overflow-y: auto;
+  margin: 0;
+  border-bottom: 2px solid #111;
+  transition: 0.5s ease;
+}
+
+.menu-btn {
+  background-color: #00000000;
+}
+
+.menu-input {
+  background-color: #240042;
+  color: #fff;
+  border: none;
+  border-bottom: 2px solid #fff;
+}
+
+.edit-links {
+  height: 30vh;
+}
+
+.time-monitor-times {
+  height: 10vh;
+}

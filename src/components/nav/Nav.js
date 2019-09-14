@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Nav.css";
 import { Link, Dropdown } from "./NavLinks.js";
 
 export default class Nav extends Component {
