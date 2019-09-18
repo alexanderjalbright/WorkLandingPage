@@ -30,7 +30,8 @@ export default class Menu extends Component {
       timeMonitorColor,
       alertsColor,
       notesColor,
-      menuColor
+      menuColor,
+      saveColors
     } = this.props;
 
     const menuNav = (
@@ -61,6 +62,7 @@ export default class Menu extends Component {
         alertsColor={alertsColor}
         notesColor={notesColor}
         menuColor={menuColor}
+        saveColors={saveColors}
       />
     );
     return (

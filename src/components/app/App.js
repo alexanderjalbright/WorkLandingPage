@@ -7,7 +7,7 @@ import Alerts from "../alerts/Alerts";
 import TimeMonitor from "../timemonitor/TimeMonitor";
 import Notes from "../notes/Notes";
 
-import { LoadLinks } from "../../functions/Load";
+import { LoadLinks, LoadColors } from "../../functions/Load";
 
 export default class App extends Component {
   constructor() {
@@ -16,12 +16,7 @@ export default class App extends Component {
       links: [],
       isMenuVisible: false,
       startTime: "08:30:00",
-      endTime: "17:00:00",
-      navBarColor: "#333333",
-      timeMonitorColor: "#3e0070",
-      alertsColor: "#aa0000",
-      notesColor: "#416400",
-      menuColor: "#3e0070"
+      endTime: "17:00:00"
     };
   }
 
@@ -61,13 +56,23 @@ export default class App extends Component {
           alertsColor={this.state.alertsColor}
           notesColor={this.state.notesColor}
           menuColor={this.state.menuColor}
+          saveColors={this.saveColors}
         />
       </div>
     );
   }
 
   componentDidMount = () => {
-    this.setState({ links: LoadLinks() });
+    const colors = LoadColors();
+    console.log(colors);
+    this.setState({
+      links: LoadLinks(),
+      navBarColor: colors.navBarColor,
+      timeMonitorColor: colors.timeMonitorColor,
+      alertsColor: colors.alertsColor,
+      notesColor: colors.notesColor,
+      menuColor: colors.menuColor
+    });
   };
 
   saveLinks = newLinks => {
@@ -80,6 +85,17 @@ export default class App extends Component {
 
     localStorage.setItem("links", JSON.stringify(newLinks));
     this.setState({ links: newLinks });
+  };
+
+  saveColors = () => {
+    const newColors = {
+      navBarColor: this.state.navBarColor,
+      timeMonitorColor: this.state.timeMonitorColor,
+      alertsColor: this.state.alertsColor,
+      notesColor: this.state.notesColor,
+      menuColor: this.state.menuColor
+    };
+    localStorage.setItem("colors", JSON.stringify(newColors));
   };
 
   deleteLink = (index, dIndex) => {
@@ -111,7 +127,6 @@ export default class App extends Component {
   };
 
   setAppState = e => {
-    console.log(e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   };
 }

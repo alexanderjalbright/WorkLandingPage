@@ -1,6 +1,6 @@
 export function LoadLinks() {
   let links = JSON.parse(localStorage.getItem("links"));
-  if (links === null) {
+  if (!links) {
     links = [
       {
         name: "StackOverflow",
@@ -36,4 +36,21 @@ export function LoadLinks() {
   }
 
   return links;
+}
+
+export function LoadColors() {
+  let colors = JSON.parse(localStorage.getItem("colors"));
+  if (!colors) {
+    colors = {
+      navBarColor: "#333333",
+      timeMonitorColor: "#3e0070",
+      alertsColor: "#aa0000",
+      notesColor: "#416400",
+      menuColor: "#3e0070"
+    };
+    console.log("pooop");
+    localStorage.setItem("colors", JSON.stringify(colors));
+  }
+
+  return colors;
 }

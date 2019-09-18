@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 
 export default class MenuTheme extends Component {
-  constructor() {
-    super();
-    this.state = {
-      navbarcolor: "#111111"
-    };
-  }
-
   render() {
     return (
       <div>
@@ -32,9 +25,14 @@ export default class MenuTheme extends Component {
           className="menuInput"
           type="color"
           value={this.props[varName]}
-          onChange={this.props.setAppState}
+          onChange={this.handleChange}
         />
       </div>
     );
+  };
+
+  handleChange = async e => {
+    await this.props.setAppState(e);
+    this.props.saveColors();
   };
 }
