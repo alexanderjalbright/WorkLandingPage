@@ -67,10 +67,22 @@ export default class Menu extends Component {
     );
     return (
       <div
-        className="Menu"
-        style={{ width: visible ? "400px" : "0px", backgroundColor: menuColor }}
+        style={{
+          width: visible ? "400px" : "0px",
+          backgroundColor: menuColor,
+          overflowX: "hidden",
+          transition: "0.5s ease"
+        }}
       >
-        <div className="menu-content">
+        <div
+          style={{
+            height: "100vh",
+            color: "#fff",
+            width: "400px",
+            display: "flex",
+            flexDirection: "column"
+          }}
+        >
           <MenuOption
             name="Nav"
             option={menuNav}

@@ -6,7 +6,12 @@ export default class MenuOption extends Component {
       <div>
         <button
           name={this.props.visibilityVar}
-          className="menu-option-toggle"
+          style={{
+            height: "auto",
+            backgroundColor: "#5f02ac",
+            width: "100%",
+            color: "#fff"
+          }}
           onClick={this.props.showOptionToggle}
         >
           <h3>
@@ -15,10 +20,12 @@ export default class MenuOption extends Component {
           </h3>
         </button>
         <div
-          className="menu-option-content"
           style={{
             height: this.props.visible ? this.props.openHeight : "0px",
-            overflowY: this.props.overflowY
+            overflowY: this.props.overflowY,
+            margin: "0",
+            borderBottom: "2px solid #111",
+            transition: "0.5s ease"
           }}
         >
           {this.props.option}

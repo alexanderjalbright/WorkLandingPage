@@ -29,12 +29,21 @@ export class Dropdown extends Component {
     return (
       <div
         key={`dropdown${link.name}`}
-        className="dropdown-cover"
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
         <div className="nav-item nav-link">{link.name} &nabla;</div>
-        <div className="dropdown">
+        <div
+          className="dropdown"
+          style={{
+            display: "none",
+            flexDirection: "column",
+            position: "absolute",
+            zIndex: "10",
+            backgroundColor: "#333",
+            boxShadow: "0px 8px 16px 0px rgba(0, 0, 0, 1)"
+          }}
+        >
           {link.dropdown.map(dLink => {
             return (
               <Link

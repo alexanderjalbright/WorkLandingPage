@@ -1,36 +1,9 @@
-.Menu {
-  overflow-x: hidden;
-  transition: 0.5s ease;
-}
-
-.menu-content {
-  height: 100vh;
-  color: #fff;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-}
-
-.menu-option-toggle {
-  height: auto;
-  background-color: #5f02ac;
-  width: 100%;
-  color: #fff;
-}
-
-.menu-option-content {
-  overflow-y: auto;
-  margin: 0;
-  border-bottom: 2px solid #111;
-  transition: 0.5s ease;
-}
-
 .menu-btn {
   background-color: #00000000;
 }
 
 .menu-input {
-  background-color: #24004200;
+  background-color: #00000000;
   color: #fff;
   border: none;
 }

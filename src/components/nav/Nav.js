@@ -7,7 +7,16 @@ export default class Nav extends Component {
   render() {
     const { links, toggleMenu, navBarColor } = this.props;
     return (
-      <div className="nav" style={{ backgroundColor: navBarColor }}>
+      <div
+        className="nav"
+        style={{
+          backgroundColor: navBarColor,
+          gridArea: "nav",
+          display: "flex",
+          color: "auto",
+          height: "var(--nav-height)"
+        }}
+      >
         {links !== undefined &&
           links.map(link =>
             link.dropdown !== undefined ? (

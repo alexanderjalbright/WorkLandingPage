@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import "./Alerts.css";
-
 export default class Alerts extends Component {
   render() {
     return (
       <div
-        className="Alerts"
-        style={{ backgroundColor: this.props.alertsColor }}
+        style={{ gridArea: "alerts", backgroundColor: this.props.alertsColor }}
       >
         alerts
       </div>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./TimeMonitor.css";
 
 export default class TimeMonitor extends Component {
   constructor() {
@@ -15,17 +14,49 @@ export default class TimeMonitor extends Component {
     return (
       <div
         className="time-monitor"
-        style={{ backgroundColor: this.props.timeMonitorColor }}
+        style={{
+          backgroundColor: this.props.timeMonitorColor,
+          gridArea: "time",
+          display: "grid",
+          gridTemplateAreas: "'title title title' '. bar .'",
+          gridTemplateRows: "20% 80%",
+          gridTemplateColumns: "10% 80% 10%"
+        }}
       >
         <div className="card-title">Time Monitor</div>
-        <div className="time-bar-container">
+        <div
+          style={{
+            boxShadow: "0px 2px 16px 0px rgba(0, 0, 0, 1)",
+            gridArea: "bar",
+            backgroundColor: "#333",
+            height: "80%",
+            border: "none",
+            borderRadius: "20px",
+            overflow: "hidden"
+          }}
+        >
           <div
-            style={{ width: `${this.state.elapsedPercent}%` }}
-            className="time-bar"
+            style={{
+              width: `${this.state.elapsedPercent}%`,
+              backgroundColor: "#006b92",
+              height: "100%"
+            }}
           ></div>
-          <div className="time-info">
-            <div>{`Elapsed: ${this.state.elapsedTime}(${this.state.elapsedPercent}%)`}</div>
-            <div>{`Remaining: ${this.state.remainingTime}(${this.state.remainingPercent}%)`}</div>
+          <div
+            className="time-info"
+            style={{
+              color: "#fff",
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "center",
+              position: "relative",
+              zIndex: "2",
+              top: "-60%",
+              left: "0"
+            }}
+          >
+            <div>{`Elapsed: ${this.state.elapsedTime} (${this.state.elapsedPercent}%)`}</div>
+            <div>{`Remaining: ${this.state.remainingTime} (${this.state.remainingPercent}%)`}</div>
           </div>
         </div>
       </div>
