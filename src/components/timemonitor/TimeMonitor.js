@@ -1,13 +1,18 @@
 import React, { Component } from "react";
+import TimeBar from "./TimeBar";
 
 export default class TimeMonitor extends Component {
   constructor() {
     super();
     this.state = {
-      remainingTime: "",
-      remainingPercent: "",
-      elapsedtime: "",
-      elapsedPercent: ""
+      dayRemTime: "",
+      dayRemPercent: "",
+      dayElaptime: "",
+      dayElapPercent: "",
+      weekRemTime: "",
+      weekRemPercent: "",
+      weekElapTime: "",
+      weekElapPercent: ""
     };
   }
   render() {
@@ -18,47 +23,27 @@ export default class TimeMonitor extends Component {
           backgroundColor: this.props.timeMonitorColor,
           gridArea: "time",
           display: "grid",
-          gridTemplateAreas: "'title title title' '. bar .'",
-          gridTemplateRows: "20% 80%",
+          gridTemplateAreas: "'title title title' '. workday .' '. workweek .'",
+          gridTemplateRows: "1fr 2fr 2fr",
           gridTemplateColumns: "10% 80% 10%"
         }}
       >
         <div className="card-title">Time Monitor</div>
-        <div
-          style={{
-            boxShadow: "0px 2px 16px 0px rgba(0, 0, 0, 1)",
-            gridArea: "bar",
-            backgroundColor: "#333",
-            height: "80%",
-            border: "none",
-            borderRadius: "20px",
-            overflow: "hidden"
-          }}
-        >
-          <div
-            style={{
-              width: `${this.state.elapsedPercent}%`,
-              backgroundColor: "#006b92",
-              height: "100%"
-            }}
-          ></div>
-          <div
-            className="time-info"
-            style={{
-              color: "#fff",
-              display: "flex",
-              justifyContent: "space-around",
-              alignItems: "center",
-              position: "relative",
-              zIndex: "2",
-              top: "-60%",
-              left: "0"
-            }}
-          >
-            <div>{`Elapsed: ${this.state.elapsedTime} (${this.state.elapsedPercent}%)`}</div>
-            <div>{`Remaining: ${this.state.remainingTime} (${this.state.remainingPercent}%)`}</div>
-          </div>
-        </div>
+
+        <TimeBar
+          remainingPercent={this.state.dayRemPercent}
+          remainingTime={this.state.dayRemTime}
+          elapsedPercent={this.state.dayElapPercent}
+          elapsedTime={this.state.dayElapTime}
+          gridArea="workday"
+        />
+        <TimeBar
+          remainingPercent={this.state.weekRemPercent}
+          remainingTime={this.state.weekRemTime}
+          elapsedPercent={this.state.weekElapPercent}
+          elapsedTime={this.state.weekElapTime}
+          gridArea="workweek"
+        />
       </div>
     );
   }
@@ -114,10 +99,30 @@ export default class TimeMonitor extends Component {
     const elapsedTime = this.secondsTohhmmss(totalSeconds - startTimeSeconds);
 
     this.setState({
-      remainingTime: remainingTime,
-      remainingPercent: remainingPercent,
-      elapsedTime: elapsedTime,
-      elapsedPercent: elapsedPercent
+      dayRemTime: remainingTime,
+      dayRemPercent: remainingPercent,
+      dayElapTime: elapsedTime,
+      dayElapPercent: elapsedPercent
     });
+    this.weekTimeMonitor();
+  };
+
+  weekTimeMonitor = () => {
+    const start = new Date(this.props.startTime);
+    const end = new Date(this.props.endTime);
+    let startSecs = start.valueOf() / 1000;
+    let endSecs = end.valueOf() / 1000;
+    const dayToday = start.getDay();
+    if (dayToday !== 0) {
+      startSecs -= dayToday * 86400;
+    }
+    const nowSecs = Math.floor(Date.now().valueOf() / 1000);
+    const nowPercent =
+      Math.round(((nowSecs - startSecs) * 1000) / (endSecs - startSecs)) / 10;
+    this.setState({
+      weekRemPercent: 100 - nowPercent,
+      weekElapPercent: nowPercent
+    });
+    console.log(start);
   };
 }
