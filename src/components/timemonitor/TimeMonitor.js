@@ -23,9 +23,10 @@ export default class TimeMonitor extends Component {
           backgroundColor: this.props.timeMonitorColor,
           gridArea: "time",
           display: "grid",
-          gridTemplateAreas: "'title title title' '. workday .' '. workweek .'",
+          gridTemplateAreas: "'title title title' '. Day .' '. Week .'",
           gridTemplateRows: "1fr 2fr 2fr",
-          gridTemplateColumns: "10% 80% 10%"
+          gridTemplateColumns: "10% 80% 10%",
+          paddingBottom: "20px"
         }}
       >
         <div className="card-title">Time Monitor</div>
@@ -35,14 +36,14 @@ export default class TimeMonitor extends Component {
           remainingTime={this.state.dayRemTime}
           elapsedPercent={this.state.dayElapPercent}
           elapsedTime={this.state.dayElapTime}
-          gridArea="workday"
+          gridArea="Day"
         />
         <TimeBar
           remainingPercent={this.state.weekRemPercent}
           remainingTime={this.state.weekRemTime}
           elapsedPercent={this.state.weekElapPercent}
           elapsedTime={this.state.weekElapTime}
-          gridArea="workweek"
+          gridArea="Week"
         />
       </div>
     );
