@@ -81,22 +81,31 @@ export default class TimeMonitor extends Component {
     const seconds = now.getSeconds();
     const minutes = now.getMinutes();
     const hour = now.getHours();
-    const totalSeconds = this.convertSecs(hour, minutes, seconds);
+    const nowSeconds = this.convertSecs(hour, minutes, seconds);
 
     const startTimeSeconds = this.splitTime(this.props.startTime);
 
     const endTimeSeconds = this.splitTime(this.props.endTime);
 
-    const elapsedPercent = (
-      ((totalSeconds - startTimeSeconds) /
-        (endTimeSeconds - startTimeSeconds)) *
-      100
-    ).toFixed(1);
-
-    const remainingPercent = (100 - elapsedPercent).toFixed(1);
-
-    const remainingTime = this.secondsTohhmmss(endTimeSeconds - totalSeconds);
-    const elapsedTime = this.secondsTohhmmss(totalSeconds - startTimeSeconds);
+    let elapsedPercent = 0;
+    let elapsedTime = "0:00:00";
+    let remainingPercent = 100;
+    let remainingTime = this.secondsTohhmmss(endTimeSeconds - startTimeSeconds);
+    if (nowSeconds > endTimeSeconds) {
+      elapsedPercent = 100;
+      remainingPercent = 0;
+      remainingTime = "0:00:00";
+      elapsedTime = this.secondsTohhmmss(endTimeSeconds - startTimeSeconds);
+    } else if (nowSeconds > startTimeSeconds) {
+      elapsedPercent = (
+        ((nowSeconds - startTimeSeconds) /
+          (endTimeSeconds - startTimeSeconds)) *
+        100
+      ).toFixed(1);
+      remainingPercent = (100 - elapsedPercent).toFixed(1);
+      remainingTime = this.secondsTohhmmss(endTimeSeconds - nowSeconds);
+      elapsedTime = this.secondsTohhmmss(nowSeconds - startTimeSeconds);
+    }
 
     this.setState({
       dayRemTime: remainingTime,
@@ -108,21 +117,58 @@ export default class TimeMonitor extends Component {
   };
 
   weekTimeMonitor = () => {
-    const start = new Date(this.props.startTime);
-    const end = new Date(this.props.endTime);
-    let startSecs = start.valueOf() / 1000;
-    let endSecs = end.valueOf() / 1000;
-    const dayToday = start.getDay();
-    if (dayToday !== 0) {
-      startSecs -= dayToday * 86400;
+    const now = new Date();
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes();
+    const hour = now.getHours();
+    const nowSeconds = new Date().setHours(hour, minutes, seconds);
+    const startHMSarr = this.props.startTime.split(":");
+    const endHMSarr = this.props.endTime.split(":");
+    const startTimeSeconds = this.getWeekday(now, 1).setHours(
+      startHMSarr[0],
+      startHMSarr[1],
+      startHMSarr[2]
+    );
+    const endTimeSeconds = this.getWeekday(now, 5).setHours(
+      endHMSarr[0],
+      endHMSarr[1],
+      endHMSarr[2]
+    );
+    console.log(startTimeSeconds);
+    console.log(nowSeconds);
+    console.log(endTimeSeconds);
+
+    let elapsedPercent = 0;
+    let elapsedTime = "0 days";
+    let remainingPercent = 100;
+    let remainingTime = "5 days";
+    if (nowSeconds > endTimeSeconds) {
+      elapsedPercent = 100;
+      remainingPercent = 0;
+      remainingTime = "0 days";
+      elapsedTime = "5 days";
+    } else if (nowSeconds > startTimeSeconds) {
+      elapsedPercent = (
+        ((nowSeconds - startTimeSeconds) /
+          (endTimeSeconds - startTimeSeconds)) *
+        100
+      ).toFixed(1);
+      remainingPercent = (100 - elapsedPercent).toFixed(1);
+      remainingTime = `${((remainingPercent / 100) * 5).toFixed(1)}`;
+      elapsedTime = `${((elapsedPercent / 100) * 5).toFixed(1)}`;
     }
-    const nowSecs = Math.floor(Date.now().valueOf() / 1000);
-    const nowPercent =
-      Math.round(((nowSecs - startSecs) * 1000) / (endSecs - startSecs)) / 10;
     this.setState({
-      weekRemPercent: 100 - nowPercent,
-      weekElapPercent: nowPercent
+      weekRemTime: remainingTime,
+      weekRemPercent: remainingPercent,
+      weekElapTime: elapsedTime,
+      weekElapPercent: elapsedPercent
     });
-    console.log(start);
+  };
+
+  getWeekday = (date, weekdayZeroth) => {
+    let day = date.getDay();
+    let diff =
+      date.getDate() - day + (day === 0 ? weekdayZeroth - 7 : weekdayZeroth); // adjust when day is sunday
+    return new Date(date.setDate(diff));
   };
 }
