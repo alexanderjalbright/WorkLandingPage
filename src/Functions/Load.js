@@ -53,3 +53,23 @@ export function LoadColors() {
 
   return colors;
 }
+
+export function LoadStartTime() {
+  let startTime = JSON.parse(localStorage.getItem("startTime"));
+  if (!startTime) {
+    startTime = "08:30:00";
+    localStorage.setItem("startTime", JSON.stringify(startTime));
+  }
+
+  return startTime;
+}
+
+export function LoadEndTime() {
+  let endTime = JSON.parse(localStorage.getItem("endTime"));
+  if (!endTime) {
+    endTime = "17:00:00";
+    localStorage.setItem("endTime", JSON.stringify(endTime));
+  }
+
+  return endTime;
+}

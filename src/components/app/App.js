@@ -7,16 +7,27 @@ import Alerts from "../alerts/Alerts";
 import TimeMonitor from "../timemonitor/TimeMonitor";
 import Notes from "../notes/Notes";
 
-import { LoadLinks, LoadColors } from "../../functions/Load";
+import {
+  LoadLinks,
+  LoadColors,
+  LoadStartTime,
+  LoadEndTime
+} from "../../functions/Load";
 
 export default class App extends Component {
   constructor() {
     super();
+    const colors = LoadColors();
     this.state = {
-      links: [],
+      links: LoadLinks(),
       isMenuVisible: false,
-      startTime: "08:30:00",
-      endTime: "17:00:00"
+      startTime: LoadStartTime(),
+      endTime: LoadEndTime(),
+      navBarColor: colors.navBarColor,
+      timeMonitorColor: colors.timeMonitorColor,
+      alertsColor: colors.alertsColor,
+      notesColor: colors.notesColor,
+      menuColor: colors.menuColor
     };
   }
 
@@ -61,18 +72,6 @@ export default class App extends Component {
       </div>
     );
   }
-
-  componentDidMount = () => {
-    const colors = LoadColors();
-    this.setState({
-      links: LoadLinks(),
-      navBarColor: colors.navBarColor,
-      timeMonitorColor: colors.timeMonitorColor,
-      alertsColor: colors.alertsColor,
-      notesColor: colors.notesColor,
-      menuColor: colors.menuColor
-    });
-  };
 
   saveLinks = newLinks => {
     newLinks
@@ -127,5 +126,11 @@ export default class App extends Component {
 
   setAppState = e => {
     this.setState({ [e.target.name]: e.target.value });
+
+    const saveables = ["startTime", "endTime"];
+    if (saveables.includes(e.target.name)) {
+      console.log(e.target.name);
+      localStorage.setItem(e.target.name, JSON.stringify(e.target.value));
+    }
   };
 }

@@ -50,6 +50,7 @@ export default class TimeMonitor extends Component {
   }
 
   componentDidMount = () => {
+    this.runTimeMonitor();
     setInterval(this.runTimeMonitor, 1000);
   };
 
@@ -78,12 +79,16 @@ export default class TimeMonitor extends Component {
 
   runTimeMonitor = () => {
     const now = new Date();
-
     const seconds = now.getSeconds();
     const minutes = now.getMinutes();
-    const hour = now.getHours();
-    const nowSeconds = this.convertSecs(hour, minutes, seconds);
+    const hours = now.getHours();
 
+    this.dayTimeMonitor(hours, minutes, seconds);
+    this.weekTimeMonitor(hours, minutes, seconds, now);
+  };
+
+  dayTimeMonitor = (hours, minutes, seconds) => {
+    const nowSeconds = this.convertSecs(hours, minutes, seconds);
     const startTimeSeconds = this.splitTime(this.props.startTime);
 
     const endTimeSeconds = this.splitTime(this.props.endTime);
@@ -114,15 +119,10 @@ export default class TimeMonitor extends Component {
       dayElapTime: elapsedTime,
       dayElapPercent: elapsedPercent
     });
-    this.weekTimeMonitor();
   };
 
-  weekTimeMonitor = () => {
-    const now = new Date();
-    const seconds = now.getSeconds();
-    const minutes = now.getMinutes();
-    const hour = now.getHours();
-    const nowSeconds = new Date().setHours(hour, minutes, seconds);
+  weekTimeMonitor = (hours, minutes, seconds, now) => {
+    const nowSeconds = new Date().setHours(hours, minutes, seconds);
     const startHMSarr = this.props.startTime.split(":");
     const endHMSarr = this.props.endTime.split(":");
     const startTimeSeconds = this.getWeekday(now, 1).setHours(
