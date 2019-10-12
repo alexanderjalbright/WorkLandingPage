@@ -64,7 +64,6 @@ export default class App extends Component {
 
   componentDidMount = () => {
     const colors = LoadColors();
-    console.log(colors);
     this.setState({
       links: LoadLinks(),
       navBarColor: colors.navBarColor,

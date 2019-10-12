@@ -134,9 +134,6 @@ export default class TimeMonitor extends Component {
       endHMSarr[1],
       endHMSarr[2]
     );
-    console.log(startTimeSeconds);
-    console.log(nowSeconds);
-    console.log(endTimeSeconds);
 
     let elapsedPercent = 0;
     let elapsedTime = "0 days";

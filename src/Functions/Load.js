@@ -48,7 +48,6 @@ export function LoadColors() {
       notesColor: "#416400",
       menuColor: "#3e0070"
     };
-    console.log("pooop");
     localStorage.setItem("colors", JSON.stringify(colors));
   }
 

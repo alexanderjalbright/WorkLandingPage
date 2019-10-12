@@ -15,7 +15,7 @@
 
 .menu-input-v-align-inner {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .menu-input-v-align-label {
