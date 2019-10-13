@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TimeBar from "./TimeBar";
+import HolidaySlideShow from "./HolidaySlideShow";
 
 export default class TimeMonitor extends Component {
   constructor() {
@@ -23,10 +24,10 @@ export default class TimeMonitor extends Component {
           backgroundColor: this.props.timeMonitorColor,
           gridArea: "time",
           display: "grid",
-          gridTemplateAreas: "'title title title' '. Day .' '. Week .'",
-          gridTemplateRows: "1fr 2fr 2fr",
-          gridTemplateColumns: "10% 80% 10%",
-          paddingBottom: "20px"
+          gridTemplateAreas: "'title' 'Day' 'Week' 'holiday'",
+          gridTemplateRows: "1fr 2fr 2fr 1fr",
+          gridTemplateColumns: "100%",
+          padding: "10px 10%"
         }}
       >
         <div className="card-title">Time Monitor</div>
@@ -45,6 +46,7 @@ export default class TimeMonitor extends Component {
           elapsedTime={this.state.weekElapTime}
           gridArea="Week"
         />
+        <HolidaySlideShow />
       </div>
     );
   }
