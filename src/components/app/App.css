@@ -38,10 +38,11 @@ a {
   padding: 10px;
   display: grid;
   grid-template-areas:
-    "nav nav nav nav"
-    "time time time alerts"
-    "notes notes notes notes";
+    "nav nav"
+    "time alerts"
+    "notes notes";
   grid-template-rows: var(--nav-height) repeat(2, var(--card-height));
+  grid-template-columns: 3fr 1fr;
   grid-gap: 1vw;
 }
 

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { end } from "worker-farm";
 
 export default class TimeBar extends Component {
   render() {
