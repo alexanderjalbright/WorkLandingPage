@@ -41,14 +41,14 @@ export default function TimeBar(props) {
       <div
         className="time-bar-container"
         style={{
-          // boxShadow: "0 0px 16px 0 rgba(0, 0, 0, 1)",
           gridArea: "bar",
           backgroundColor: "#333",
           height: "80%",
           border: "none",
           borderTopRightRadius: "10px",
           borderBottomRightRadius: "10px",
-          overflow: "hidden"
+
+          position: "relative"
         }}
       >
         <div
@@ -65,11 +65,11 @@ export default function TimeBar(props) {
             color: "#fff",
             display: "flex",
             justifyContent: "space-around",
-            alignItems: "center",
-            position: "relative",
+
+            position: "absolute",
             zIndex: "2",
-            top: "-70%",
-            left: "0"
+            top: "23%",
+            width: "100%"
           }}
         >
           <div>{`Elapsed: ${elapsedTime} (${elapsedPercent}%)`}</div>

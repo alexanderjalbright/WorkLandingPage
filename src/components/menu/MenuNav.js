@@ -60,10 +60,7 @@ export default class Menu extends Component {
               const newLink = {
                 name: this.state.name,
                 path: this.state.path,
-                dropdown:
-                  this.state.path === undefined || this.state.path === ""
-                    ? [{ name: "", path: "" }]
-                    : undefined
+                dropdown: this.state.path ? undefined : [{ name: "", path: "" }]
               };
               addLink(newLink);
               this.setState({ name: "", path: "" });
