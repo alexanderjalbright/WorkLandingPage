@@ -1,22 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class MenuTheme extends Component {
-  render() {
-    return (
-      <div>
-        <h3>Colors:</h3>
-        <div className="menu-input-v-align-outter">
-          {this.colorInput("Nav Bar", "navBarColor")}
-          {this.colorInput("Time Monitor", "timeMonitorColor")}
-          {this.colorInput("Alerts", "alertsColor")}
-          {this.colorInput("Notes", "notesColor")}
-          {this.colorInput("Menu", "menuColor")}
-        </div>
-      </div>
-    );
-  }
+export default function MenuTheme(props) {
+  const handleChange = async e => {
+    await this.props.setAppState(e);
+    this.props.saveColors();
+  };
 
-  colorInput = (lblName, varName) => {
+  const colorInput = (lblName, varName) => {
     return (
       <div className="menu-input-v-align-inner">
         <label className="menu-input-v-align-label">{lblName}:</label>
@@ -24,15 +14,23 @@ export default class MenuTheme extends Component {
           name={varName}
           className="menuInput"
           type="color"
-          value={this.props[varName]}
-          onChange={this.handleChange}
+          value={props[varName]}
+          onChange={handleChange}
         />
       </div>
     );
   };
 
-  handleChange = async e => {
-    await this.props.setAppState(e);
-    this.props.saveColors();
-  };
+  return (
+    <div>
+      <h3>Colors:</h3>
+      <div className="menu-input-v-align-outter">
+        {colorInput("Nav Bar", "navBarColor")}
+        {colorInput("Time Monitor", "timeMonitorColor")}
+        {colorInput("Alerts", "alertsColor")}
+        {colorInput("Notes", "notesColor")}
+        {colorInput("Menu", "menuColor")}
+      </div>
+    </div>
+  );
 }

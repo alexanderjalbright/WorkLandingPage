@@ -1,13 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class Notes extends Component {
-  render() {
-    return (
-      <div
-        style={{ gridArea: "notes", backgroundColor: this.props.notesColor }}
-      >
-        notes
-      </div>
-    );
-  }
+export default function Notes(props) {
+  return (
+    <div style={{ gridArea: "notes", backgroundColor: props.notesColor }}>
+      notes
+    </div>
+  );
 }
