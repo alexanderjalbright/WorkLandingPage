@@ -56,7 +56,9 @@ export default function TimeBar(props) {
           style={{
             width: `${elapsedPercent}%`,
             backgroundColor: "#006b92",
-            height: "100%"
+            height: "100%",
+            borderTopRightRadius: "10px",
+            borderBottomRightRadius: "10px"
           }}
         ></div>
         <div
