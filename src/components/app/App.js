@@ -11,13 +11,17 @@ import {
   LoadLinks,
   LoadColors,
   LoadStartTime,
-  LoadEndTime
+  LoadEndTime,
+  LoadHolidays
 } from "../../functions/Load";
 
 export default class App extends Component {
   constructor() {
     super();
     const colors = LoadColors();
+    const HolidaysAndAlerts = LoadHolidays();
+    const holidays = HolidaysAndAlerts.holidays;
+    const alerts = HolidaysAndAlerts.alerts;
     this.state = {
       links: LoadLinks(),
       isMenuVisible: false,
@@ -27,7 +31,8 @@ export default class App extends Component {
       timeMonitorColor: colors.timeMonitorColor,
       alertsColor: colors.alertsColor,
       notesColor: colors.notesColor,
-      menuColor: colors.menuColor
+      menuColor: colors.menuColor,
+      holidays: holidays
     };
   }
 
@@ -49,6 +54,7 @@ export default class App extends Component {
             endTime={this.state.endTime}
             setAppState={this.setAppState}
             timeMonitorColor={this.state.timeMonitorColor}
+            holidays={this.state.holidays}
           />
           <Notes notesColor={this.state.notesColor} />
         </div>

@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import HolidaySlide from "./HolidaySlide";
-import SetupHolidays from "./HolidayFunctions";
 
 export default class HolidaySlideShow extends Component {
   constructor() {
     super();
     this.state = {
-      holidays: SetupHolidays(),
       selectedSlide: 0
     };
   }
@@ -27,13 +25,13 @@ export default class HolidaySlideShow extends Component {
         >
           {"<"}
         </button>
-        {this.state.holidays.map((holiday, index) => (
+        {this.props.holidays.map((holiday, index) => (
           <HolidaySlide
             key={`holiday${holiday.name}`}
             holiday={holiday}
             index={index}
             selectedSlide={this.state.selectedSlide}
-            total={this.state.holidays.length}
+            total={this.props.holidays.length}
           />
         ))}
         <button
@@ -48,7 +46,7 @@ export default class HolidaySlideShow extends Component {
 
   next = () => {
     const nextPosition =
-      this.state.selectedSlide < this.state.holidays.length - 1
+      this.state.selectedSlide < this.props.holidays.length - 1
         ? this.state.selectedSlide + 1
         : 0;
     this.setState({ selectedSlide: nextPosition });
@@ -58,7 +56,7 @@ export default class HolidaySlideShow extends Component {
     const prevPosition =
       this.state.selectedSlide > 0
         ? this.state.selectedSlide - 1
-        : this.state.holidays.length - 1;
+        : this.props.holidays.length - 1;
     this.setState({ selectedSlide: prevPosition });
   };
 }

@@ -46,7 +46,7 @@ export default class TimeMonitor extends Component {
           elapsedTime={this.state.weekElapTime}
           gridArea="Week"
         />
-        <HolidaySlideShow />
+        <HolidaySlideShow holidays={this.props.holidays} />
       </div>
     );
   }
