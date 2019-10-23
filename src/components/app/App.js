@@ -20,8 +20,6 @@ export default class App extends Component {
     super();
     const colors = LoadColors();
     const HolidaysAndAlerts = LoadHolidays();
-    const holidays = HolidaysAndAlerts.holidays;
-    const alerts = HolidaysAndAlerts.alerts;
     this.state = {
       links: LoadLinks(),
       isMenuVisible: false,
@@ -32,7 +30,8 @@ export default class App extends Component {
       alertsColor: colors.alertsColor,
       notesColor: colors.notesColor,
       menuColor: colors.menuColor,
-      holidays: holidays
+      holidays: HolidaysAndAlerts.holidays,
+      alerts: HolidaysAndAlerts.alerts
     };
   }
 
@@ -48,6 +47,7 @@ export default class App extends Component {
           <Alerts
             setAppState={this.setAppState}
             alertsColor={this.state.alertsColor}
+            alerts={this.state.alerts}
           />
           <TimeMonitor
             startTime={this.state.startTime}
