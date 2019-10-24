@@ -6,6 +6,9 @@
   background: none;
   color: #fff;
   border: none;
+}
+
+.menu-input-v-align-input {
   grid-area: input;
   text-align: left;
 }

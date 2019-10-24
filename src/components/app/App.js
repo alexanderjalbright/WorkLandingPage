@@ -134,11 +134,18 @@ export default class App extends Component {
     const newHoliday = ConvertUserHolidayToHoliday(newUserHoliday);
     newHoliday.findNext();
     newHoliday.findDaysUntil();
+    const newAlerts = [...this.state.alerts];
+    newHoliday.daysUntil === 0
+      ? newAlerts.push(newHoliday.name)
+      : newHoliday.daysUntil < 7 &&
+        newAlerts.push(
+          `${newHoliday.daysUntil} day(s) until ${newHoliday.name}`
+        );
     const newHolidays = [...this.state.holidays, newHoliday];
     newHolidays.sort((a, b) => {
       return a.daysUntil - b.daysUntil;
     });
-    this.setState({ holidays: newHolidays });
+    this.setState({ holidays: newHolidays, alerts: newAlerts });
     const userHolidays = JSON.parse(localStorage.getItem("userHolidays"));
     userHolidays.push(newUserHoliday);
     localStorage.setItem("userHolidays", JSON.stringify(userHolidays));

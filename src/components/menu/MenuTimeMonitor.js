@@ -16,7 +16,7 @@ export default function MenuTimeMonitor(props) {
         <label className="menu-input-v-align-label">Start&nbsp;Time:</label>
         <input
           name="startTime"
-          className="menu-input"
+          className="menu-input menu-input-v-align-input"
           style={{ width: "130px" }}
           value={startTime}
           onChange={setAppState} //onChange={this.setLinkProps}
@@ -27,7 +27,7 @@ export default function MenuTimeMonitor(props) {
         <label className="menu-input-v-align-label">End&nbsp;Time:</label>
         <input
           name="endTime"
-          className="menu-input"
+          className="menu-input-v-align-input menu-input"
           style={{ width: "130px" }}
           value={endTime}
           onChange={setAppState}
@@ -36,36 +36,34 @@ export default function MenuTimeMonitor(props) {
       </div>
       <hr />
       <div className="menu-input-v-align-inner">
-        <label className="menu-input-v-align-label">Holiday Name:</label>
         <input
           name="newHolidayName"
-          className="menu-input"
-          style={{ width: "130px" }}
+          style={{
+            width: "100%",
+            gridArea: "label",
+            textAlign: "right",
+            background: "none",
+            color: "#fff",
+            border: "none"
+          }}
           value={newHolidayName}
           onChange={onChange}
           placeholder="My Birthday"
+          dir="rtl"
         />
-      </div>
-      <div className="menu-input-v-align-inner">
-        <label className="menu-input-v-align-label">Holiday Date:</label>
-        <input
-          name="newHolidayDate"
-          className="menu-input"
-          style={{ width: "130px" }}
-          value={newHolidayDate}
-          onChange={onChange}
-          type="Date"
-        />
-      </div>
-      <div className="menu-input-v-align-inner">
-        <div className="menu-input-v-align-label"></div>
-        <button
-          className="menu-input"
-          style={{ border: "1px solid #fff", width: "42px" }}
-          onClick={addHolidayHandler}
-        >
-          Add
-        </button>
+        <span className="menu-input-v-align-input">
+          <input
+            name="newHolidayDate"
+            className="menu-input"
+            style={{ width: "130px" }}
+            value={newHolidayDate}
+            onChange={onChange}
+            type="Date"
+          />
+          <button className="menu-btn add-btn" onClick={addHolidayHandler}>
+            +
+          </button>
+        </span>
       </div>
     </div>
   );
