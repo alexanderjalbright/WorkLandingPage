@@ -1,11 +1,13 @@
 .menu-btn {
-  background-color: #00000000;
+  background: none;
 }
 
 .menu-input {
-  background-color: #00000000;
+  background: none;
   color: #fff;
   border: none;
+  grid-area: input;
+  text-align: left;
 }
 
 .menu-input-v-align-outter {
@@ -14,12 +16,13 @@
 }
 
 .menu-input-v-align-inner {
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-areas: "label input";
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
 }
 
 .menu-input-v-align-label {
-  padding-right: 50px;
-  width: 125px;
+  grid-area: label;
   text-align: right;
 }

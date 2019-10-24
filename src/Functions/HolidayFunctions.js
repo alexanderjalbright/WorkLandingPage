@@ -51,11 +51,15 @@ function SecsToDays(secs) {
   return days;
 }
 
-export function DaysUntilDate(givenDate) {
-  const todaySec = Date.now().valueOf();
-  const untilDateSec = givenDate.valueOf();
-  let diff = SecsToDays(untilDateSec - todaySec);
-  return diff;
+export function ConvertUserHolidayToHoliday(userHoliday) {
+  const pieces = userHoliday.textDate.split("-");
+  const year = pieces[0];
+  let month = 12;
+  if (pieces[1] > 1) month = pieces[1] - 1;
+  const day = pieces[2];
+
+  const newHoliday = new Holiday(userHoliday.name, new Date(year, month, day));
+  return newHoliday;
 }
 
 export class Holiday {
@@ -95,5 +99,11 @@ export class Holiday {
     if (this.occurrence !== undefined) {
       this.findCorrectDate(this.date.getFullYear());
     }
+  }
+  findDaysUntil() {
+    const todaySec = Date.now().valueOf();
+    const untilDateSec = this.date.valueOf();
+    let diff = SecsToDays(untilDateSec - todaySec);
+    this.daysUntil = diff;
   }
 }

@@ -11,7 +11,9 @@ export default class Menu extends Component {
     this.state = {
       isMenuNavVisible: false,
       isMenuTimeMonitorVisible: false,
-      isMenuThemeVisible: false
+      isMenuThemeVisible: false,
+      newHolidayName: "",
+      newHolidayDate: ""
     };
   }
 
@@ -34,7 +36,7 @@ export default class Menu extends Component {
       saveColors
     } = this.props;
 
-    const menuNav = (
+    const navOption = (
       <MenuNav
         visible={this.state.isMenuNavVisible}
         links={links}
@@ -45,16 +47,20 @@ export default class Menu extends Component {
       />
     );
 
-    const menuTimeMonitor = (
+    const timeMonitorOption = (
       <MenuTimeMonitor
         visible={this.state.isMenuTimeMonitorVisible}
         startTime={startTime}
         endTime={endTime}
-        setAppState={this.props.setAppState}
+        setAppState={setAppState}
+        newHolidayName={this.state.newHolidayName}
+        newHolidayDate={this.state.newHolidayDate}
+        onChange={this.onChange}
+        addHolidayHandler={this.addHolidayHandler}
       />
     );
 
-    const menuThemeOption = (
+    const themeOption = (
       <MenuTheme
         setAppState={setAppState}
         navBarColor={navBarColor}
@@ -85,29 +91,29 @@ export default class Menu extends Component {
         >
           <MenuOption
             name="Nav"
-            option={menuNav}
+            option={navOption}
             visibilityVar="isMenuNavVisible"
             visible={this.state.isMenuNavVisible}
             showOptionToggle={this.showOptionToggle}
-            openHeight="30vh"
+            openHeight="200px"
             overflowY="scroll"
           />
           <MenuOption
             name="Time Monitor"
-            option={menuTimeMonitor}
+            option={timeMonitorOption}
             visibilityVar="isMenuTimeMonitorVisible"
             visible={this.state.isMenuTimeMonitorVisible}
             showOptionToggle={this.showOptionToggle}
-            openHeight="8vh"
+            openHeight="150px"
             overflowY="hidden"
           />
           <MenuOption
             name="Theme"
-            option={menuThemeOption}
+            option={themeOption}
             visibilityVar="isMenuThemeVisible"
             visible={this.state.isMenuThemeVisible}
             showOptionToggle={this.showOptionToggle}
-            openHeight="30vh"
+            openHeight="200px"
             overflowY="scroll"
           />
         </div>
@@ -117,6 +123,17 @@ export default class Menu extends Component {
   showOptionToggle = e => {
     this.setState({
       [e.currentTarget.name]: !this.state[e.currentTarget.name]
+    });
+  };
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  addHolidayHandler = () => {
+    this.props.addHoliday({
+      name: this.state.newHolidayName,
+      textDate: this.state.newHolidayDate
     });
   };
 }

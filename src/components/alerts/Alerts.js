@@ -23,7 +23,7 @@ export default function Alerts(props) {
       <div className="card-title">Alerts</div>
       <ul>
         {alerts.map(alert => (
-          <li>{alert}</li>
+          <li key={`alert${alert}`}>{alert}</li>
         ))}
       </ul>
     </div>

@@ -1,4 +1,8 @@
-import { EarlyReleaseDays, DaysUntilDate, Holiday } from "./HolidayFunctions";
+import {
+  EarlyReleaseDays,
+  ConvertUserHolidayToHoliday,
+  Holiday
+} from "./HolidayFunctions";
 
 export function LoadLinks() {
   let links = JSON.parse(localStorage.getItem("links"));
@@ -93,19 +97,10 @@ export function LoadHolidays() {
   let userHolidays = JSON.parse(localStorage.getItem("userHolidays"));
   if (!userHolidays) {
     userHolidays = [];
+    localStorage.setItem("userHolidays", JSON.stringify(userHolidays));
   }
   const newUserHolidays = userHolidays.map(userHoliday => {
-    const pieces = userHoliday.textDate.split("-");
-    const year = pieces[0];
-    let month = 12;
-    if (pieces[1] > 1) month = pieces[1] - 1;
-    const day = pieces[2];
-
-    const newHoliday = new Holiday(
-      userHoliday.name,
-      new Date(year, month, day)
-    );
-    return newHoliday;
+    return ConvertUserHolidayToHoliday(userHoliday);
   });
 
   let tempHolidays = [...holidays, ...newUserHolidays];
@@ -128,11 +123,10 @@ export function LoadHolidays() {
       thanksgiving.date.getDate() + 1
     )
   );
-
   tempHolidays.push(fridayAfterTG);
 
   tempHolidays.forEach(holiday => {
-    holiday.daysUntil = DaysUntilDate(holiday.date);
+    holiday.findDaysUntil();
     holiday.daysUntil === 0
       ? todaysAlerts.push(holiday.name)
       : holiday.daysUntil < 7 &&

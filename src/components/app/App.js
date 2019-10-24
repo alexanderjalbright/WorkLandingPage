@@ -15,6 +15,8 @@ import {
   LoadHolidays
 } from "../../functions/Load";
 
+import { ConvertUserHolidayToHoliday } from "../../functions/HolidayFunctions";
+
 export default class App extends Component {
   constructor() {
     super();
@@ -74,6 +76,7 @@ export default class App extends Component {
           notesColor={this.state.notesColor}
           menuColor={this.state.menuColor}
           saveColors={this.saveColors}
+          addHoliday={this.addHoliday}
         />
       </div>
     );
@@ -124,6 +127,21 @@ export default class App extends Component {
       ? modLinks.push(newLink)
       : modLinks[index].dropdown.push(newLink);
     this.saveLinks(modLinks);
+  };
+
+  addHoliday = newUserHoliday => {
+    console.log(newUserHoliday);
+    const newHoliday = ConvertUserHolidayToHoliday(newUserHoliday);
+    newHoliday.findNext();
+    newHoliday.findDaysUntil();
+    const newHolidays = [...this.state.holidays, newHoliday];
+    newHolidays.sort((a, b) => {
+      return a.daysUntil - b.daysUntil;
+    });
+    this.setState({ holidays: newHolidays });
+    const userHolidays = JSON.parse(localStorage.getItem("userHolidays"));
+    userHolidays.push(newUserHoliday);
+    localStorage.setItem("userHolidays", JSON.stringify(userHolidays));
   };
 
   toggleMenu = () => {

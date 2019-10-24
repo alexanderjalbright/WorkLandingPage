@@ -33,7 +33,8 @@ export default function MenuOption(props) {
           overflowY: overflowY,
           margin: "0",
           borderBottom: "2px solid #111",
-          transition: "0.5s ease"
+          transition: "0.5s ease",
+          padding: visible ? "10px 20px" : "0px"
         }}
       >
         {option}

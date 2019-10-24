@@ -23,7 +23,6 @@ export default function MenuTheme(props) {
 
   return (
     <div>
-      <h3>Colors:</h3>
       <div className="menu-input-v-align-outter">
         {colorInput("Nav Bar", "navBarColor")}
         {colorInput("Time Monitor", "timeMonitorColor")}
