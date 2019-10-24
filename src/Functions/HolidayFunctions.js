@@ -87,11 +87,13 @@ export class Holiday {
     this.date.setTime(result.getTime());
   }
   findNext() {
-    this.inPast()
-      ? this.occurrence === undefined
+    while (this.inPast()) {
+      this.occurrence === undefined
         ? this.date.setYear(this.date.getFullYear() + 1)
-        : this.findCorrectDate(this.date.getFullYear() + 1)
-      : this.occurrence !== undefined &&
-        this.findCorrectDate(this.date.getFullYear());
+        : this.findCorrectDate(this.date.getFullYear() + 1);
+    }
+    if (this.occurrence !== undefined) {
+      this.findCorrectDate(this.date.getFullYear());
+    }
   }
 }

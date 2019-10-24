@@ -117,12 +117,18 @@ export function LoadHolidays() {
     }
   });
 
-  const fridayAfterTG = {
+  const thanksgiving = {
     ...tempHolidays.find(holiday => holiday.name === "Thanksgiving Day")
   };
-  fridayAfterTG.name = "Friday After Thanksgiving";
-  fridayAfterTG.date = new Date(fridayAfterTG.date.getTime());
-  fridayAfterTG.date.setDate(fridayAfterTG.date.getDate() + 1);
+  const fridayAfterTG = new Holiday(
+    "Friday After Thanksgiving",
+    new Date(
+      thanksgiving.date.getFullYear(),
+      thanksgiving.date.getMonth(),
+      thanksgiving.date.getDate() + 1
+    )
+  );
+
   tempHolidays.push(fridayAfterTG);
 
   tempHolidays.forEach(holiday => {
