@@ -6,6 +6,7 @@ import Menu from "../menu/Menu";
 import Alerts from "../alerts/Alerts";
 import TimeMonitor from "../timemonitor/TimeMonitor";
 import Notes from "../notes/Notes";
+import Github from "../github/Github";
 
 import {
   LoadLinks,
@@ -33,8 +34,44 @@ export default class App extends Component {
       notesColor: colors.notesColor,
       menuColor: colors.menuColor,
       holidays: HolidaysAndAlerts.holidays,
-      alerts: HolidaysAndAlerts.alerts
+      alerts: HolidaysAndAlerts.alerts,
+      recent3Repos: [],
+      user: {
+        name: "loading",
+        login: "loading",
+        blog: "loading",
+        html_url: ""
+      },
+      isFetchPermitted: true
     };
+  }
+
+  async componentDidMount() {
+    if (this.state.isFetchPermitted) {
+      const reposResp = await fetch(
+        `https://api.github.com/users/alexanderjalbright/repos?sort=date`
+      );
+      const reposJson = await reposResp.json();
+      const recent3Repos = reposJson.splice(0, 3);
+      this.setState({ recent3Repos: recent3Repos });
+      console.log(recent3Repos[0].name);
+      console.log(recent3Repos[0].html_url);
+      console.log(recent3Repos[0].updated_at);
+
+      const userResp = await fetch(
+        `https://api.github.com/users/alexanderjalbright/repos?sort=date`
+      );
+      const userJson = await userResp.json();
+      this.setState({ user: userJson });
+      console.log(userJson.name);
+      console.log(userJson.login);
+      console.log(userJson.blog);
+      console.log(userJson.html_url);
+    }
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.repos);
   }
 
   render() {
@@ -59,6 +96,10 @@ export default class App extends Component {
             holidays={this.state.holidays}
           />
           <Notes notesColor={this.state.notesColor} />
+          <Github
+            user={this.state.user}
+            recent3Repos={this.state.recent3Repos}
+          />
         </div>
         <Menu
           visible={this.state.isMenuVisible}

@@ -12,6 +12,7 @@
   --color-menu: #3e0070;
   --color-time-monitor: #3e0070;
   --color-alerts: #aa0000;
+  --color-yellow: #9c8a00;
 }
 
 html {
@@ -40,7 +41,7 @@ a {
   grid-template-areas:
     "nav nav"
     "time alerts"
-    "notes notes";
+    "notes github";
   grid-template-rows: var(--nav-height) repeat(2, var(--card-height));
   grid-template-columns: 3fr 1fr;
   grid-gap: 1vw;
