@@ -93,7 +93,6 @@ export function LoadHolidays() {
     new Holiday("Thanksgiving Day", new Date(thisYear, 10, 1), 4, 4)
   ];
 
-  const todaysAlerts = [];
   let userHolidays = JSON.parse(localStorage.getItem("userHolidays"));
   if (!userHolidays) {
     userHolidays = [];
@@ -124,13 +123,16 @@ export function LoadHolidays() {
     )
   );
   tempHolidays.push(fridayAfterTG);
-
+  const todaysAlerts = [];
   tempHolidays.forEach(holiday => {
     holiday.findDaysUntil();
-    holiday.daysUntil === 0
-      ? todaysAlerts.push(holiday.name)
-      : holiday.daysUntil < 7 &&
-        todaysAlerts.push(`${holiday.daysUntil} day(s) until ${holiday.name}`);
+    if (holiday.daysUntil < 7)
+      holiday.daysUntil === 0
+        ? todaysAlerts.push(holiday.name)
+        : holiday.daysUntil < 7 &&
+          todaysAlerts.push(
+            `${holiday.daysUntil} day(s) until ${holiday.name}`
+          );
   });
   const sortedHolidays = tempHolidays.sort((a, b) => {
     return a.daysUntil - b.daysUntil;
