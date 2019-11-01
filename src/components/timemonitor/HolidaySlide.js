@@ -1,16 +1,30 @@
 import React from "react";
 
 export default function HolidaySlide(props) {
-  const { selectedSlide, index, holiday, total } = props;
+  const {
+    selectedSlide,
+    prev,
+    next,
+    index,
+    holiday,
+    total,
+    removeHoliday
+  } = props;
+  const removeHolidayHandler = name => {
+    removeHoliday(name);
+    if (index !== 0) {
+      prev();
+    }
+  };
   return (
     <div
       style={{
         display: selectedSlide === index ? "grid" : "none",
         gridArea: "holiday",
-        padding: "0 10px",
+        padding: "0",
         margin: "0",
-        gridTemplateAreas: "'date name until index'",
-        gridTemplateColumns: "70px auto 150px 100px"
+        gridTemplateAreas: "'date name until index remove'",
+        gridTemplateColumns: "70px 1fr 150px 100px 30px"
       }}
     >
       <div style={{ gridArea: "date" }}>{`${holiday.date.getMonth() +
@@ -20,8 +34,19 @@ export default function HolidaySlide(props) {
         style={{ gridArea: "until", textAlign: "right" }}
       >{`${holiday.daysUntil} days away`}</div>
       <div style={{ gridArea: "index", textAlign: "right" }}>
-        {`${index + 1}/${total}`}{" "}
+        {`${index + 1}/${total}`}
       </div>
+      {JSON.parse(localStorage.getItem("userHolidays")).filter(
+        userHoliday => holiday.name === userHoliday.name
+      ).length > 0 && (
+        <button
+          className="del-btn menu-btn"
+          style={{ gridArea: "remove" }}
+          onClick={() => removeHolidayHandler(holiday.name)}
+        >
+          &times;
+        </button>
+      )}
     </div>
   );
 }

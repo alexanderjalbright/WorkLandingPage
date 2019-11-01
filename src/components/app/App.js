@@ -57,6 +57,7 @@ export default class App extends Component {
             setAppState={this.setAppState}
             timeMonitorColor={this.state.timeMonitorColor}
             holidays={this.state.holidays}
+            removeHoliday={this.removeHoliday}
           />
           <Notes notesColor={this.state.notesColor} />
         </div>
@@ -149,6 +150,17 @@ export default class App extends Component {
     const userHolidays = JSON.parse(localStorage.getItem("userHolidays"));
     userHolidays.push(newUserHoliday);
     localStorage.setItem("userHolidays", JSON.stringify(userHolidays));
+  };
+
+  removeHoliday = async name => {
+    const newHolidays = this.state.holidays.filter(
+      holiday => holiday.name !== name
+    );
+    await this.setState({ holidays: newHolidays });
+    const newUserHolidays = JSON.parse(
+      localStorage.getItem("userHolidays")
+    ).filter(holiday => holiday.name !== name);
+    localStorage.setItem("userHolidays", JSON.stringify(newUserHolidays));
   };
 
   toggleMenu = () => {

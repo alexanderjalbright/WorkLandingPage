@@ -7,7 +7,7 @@ export default function Alerts(props) {
   const weekNum = Math.ceil(mSecSince1stPay / mSecPerWeek);
   const payAlert =
     weekNum % 2 === 1 ? (today.getDay() !== 5 ? "Pay Week!" : "Payday!") : null;
-  const alerts = [...(payAlert || []), ...props.alerts];
+  const alerts = payAlert ? [payAlert, ...props.alerts] : [...props.alerts];
   return (
     <div
       style={{
