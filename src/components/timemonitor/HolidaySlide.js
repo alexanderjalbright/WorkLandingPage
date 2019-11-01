@@ -42,7 +42,11 @@ export default function HolidaySlide(props) {
         <button
           className="del-btn menu-btn"
           style={{ gridArea: "remove" }}
-          onClick={() => removeHolidayHandler(holiday.name)}
+          onClick={() =>
+            window.confirm(`You are about to remove ${holiday.name}`)
+              ? removeHolidayHandler(holiday.name)
+              : null
+          }
         >
           &times;
         </button>
