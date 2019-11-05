@@ -42,7 +42,6 @@ export default function HolidaySlideShow(props) {
           total={holidays.length}
           removeHoliday={props.removeHoliday}
           prev={prev}
-          next={next}
         />
       ))}
       <button

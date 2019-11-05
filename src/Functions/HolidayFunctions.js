@@ -91,13 +91,12 @@ export class Holiday {
     this.date.setTime(result.getTime());
   }
   findNext() {
+    let year = new Date().getFullYear();
     while (this.inPast()) {
       this.occurrence === undefined
-        ? this.date.setYear(this.date.getFullYear() + 1)
-        : this.findCorrectDate(this.date.getFullYear() + 1);
-    }
-    if (this.occurrence !== undefined) {
-      this.findCorrectDate(this.date.getFullYear());
+        ? this.date.setYear(year)
+        : this.findCorrectDate(year);
+      year++;
     }
   }
   findDaysUntil() {

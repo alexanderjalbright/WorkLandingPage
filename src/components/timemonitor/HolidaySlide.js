@@ -4,7 +4,6 @@ export default function HolidaySlide(props) {
   const {
     selectedSlide,
     prev,
-    next,
     index,
     holiday,
     total,
